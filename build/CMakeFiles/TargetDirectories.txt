@@ -1,0 +1,14 @@
+/root/python-mlir-gpu-compiler/build/CMakeFiles/intrinsics_gen.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/vt_gen.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/omp_gen.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/acc_gen.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/target_parser_gen.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/mlir-tablegen-targets.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/mlir-headers.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/mlir-generic-headers.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/mlir-doc.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/edit_cache.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/rebuild_cache.dir
+/root/python-mlir-gpu-compiler/build/include/tilegpu/CMakeFiles/MLIRTileGPUOpsIncGen.dir
+/root/python-mlir-gpu-compiler/build/include/tilegpu/CMakeFiles/edit_cache.dir
+/root/python-mlir-gpu-compiler/build/include/tilegpu/CMakeFiles/rebuild_cache.dir

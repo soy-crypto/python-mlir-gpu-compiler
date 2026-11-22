@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/root/python-mlir-gpu-compiler/build/cmake_install.cmake",
+		"/root/python-mlir-gpu-compiler/build/include/tilegpu/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

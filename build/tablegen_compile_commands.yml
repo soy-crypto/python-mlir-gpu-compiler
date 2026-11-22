@@ -1,0 +1,18 @@
+--- !FileInfo:
+  filepath: "/root/python-mlir-gpu-compiler/include/tilegpu/TileGPUOps.td"
+  includes: "/root/python-mlir-gpu-compiler/include/tilegpu;/root/llvm-project/llvm/include;/root/llvm-project/build/include;/root/llvm-project/mlir/include;/root/llvm-project/build/tools/mlir/include;/root/python-mlir-gpu-compiler/include;/root/python-mlir-gpu-compiler/build/include"
+--- !FileInfo:
+  filepath: "/root/python-mlir-gpu-compiler/include/tilegpu/TileGPUOps.td"
+  includes: "/root/python-mlir-gpu-compiler/include/tilegpu;/root/llvm-project/llvm/include;/root/llvm-project/build/include;/root/llvm-project/mlir/include;/root/llvm-project/build/tools/mlir/include;/root/python-mlir-gpu-compiler/include;/root/python-mlir-gpu-compiler/build/include"
+--- !FileInfo:
+  filepath: "/root/python-mlir-gpu-compiler/include/tilegpu/TileGPUOps.td"
+  includes: "/root/python-mlir-gpu-compiler/include/tilegpu;/root/llvm-project/llvm/include;/root/llvm-project/build/include;/root/llvm-project/mlir/include;/root/llvm-project/build/tools/mlir/include;/root/python-mlir-gpu-compiler/include;/root/python-mlir-gpu-compiler/build/include"
+--- !FileInfo:
+  filepath: "/root/python-mlir-gpu-compiler/include/tilegpu/TileGPUOps.td"
+  includes: "/root/python-mlir-gpu-compiler/include/tilegpu;/root/llvm-project/llvm/include;/root/llvm-project/build/include;/root/llvm-project/mlir/include;/root/llvm-project/build/tools/mlir/include;/root/python-mlir-gpu-compiler/include;/root/python-mlir-gpu-compiler/build/include"
+--- !FileInfo:
+  filepath: "/root/python-mlir-gpu-compiler/include/tilegpu/TileGPUOps.td"
+  includes: "/root/python-mlir-gpu-compiler/include/tilegpu;/root/llvm-project/llvm/include;/root/llvm-project/build/include;/root/llvm-project/mlir/include;/root/llvm-project/build/tools/mlir/include;/root/python-mlir-gpu-compiler/include;/root/python-mlir-gpu-compiler/build/include"
+--- !FileInfo:
+  filepath: "/root/python-mlir-gpu-compiler/include/tilegpu/TileGPUOps.td"
+  includes: "/root/python-mlir-gpu-compiler/include/tilegpu;/root/llvm-project/llvm/include;/root/llvm-project/build/include;/root/llvm-project/mlir/include;/root/llvm-project/build/tools/mlir/include;/root/python-mlir-gpu-compiler/include;/root/python-mlir-gpu-compiler/build/include"
