@@ -30,7 +30,8 @@ define TileGPU_ReluOp : Op<TileGPU_Dialect, "relu">
 {
     let summary = "write max(input, 0) elementwise into output";
     let argument = (ins  
-                        Arg<F32MemRef, "input", [MemRead]> : $input, Arg<F32MemRef, "output", [MemWrite]> : $output, 
+                        Arg<F32MemRef, "input",  [MemRead]>  : $input, 
+                        Arg<F32MemRef, "output", [MemWrite]> : $output, 
                         DenseI64ArrayAttr : $tile
                     );
 
