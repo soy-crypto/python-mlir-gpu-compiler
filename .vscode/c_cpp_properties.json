@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/root/llvm-project/mlir/include",
+                "/root/llvm-project/build/tools/mlir/include",
+                "/root/llvm-project/llvm/include",
+                "/root/llvm-project/build/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang-21",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
