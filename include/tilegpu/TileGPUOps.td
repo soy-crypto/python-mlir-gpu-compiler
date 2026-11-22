@@ -26,14 +26,22 @@ def TileGPU_GemmOp : Op<TileGPU_Dialect, "gemm">
 }
 
 /** ReluOp */
-define TileGPU_ReluOp : Op<TileGPU_Dialect, "relu">
+def TileGPU_ReluOp : Op<TileGPU_Dialect, "relu">
 {
     let summary = "write max(input, 0) elementwise into output";
-    let argument = (ins  
+    let arguments = (ins  
                         Arg<F32MemRef, "input",  [MemRead]>  : $input, 
                         Arg<F32MemRef, "output", [MemWrite]> : $output, 
                         DenseI64ArrayAttr : $tile
                     );
 
     let results = (outs);
+}
+
+/** AddOp */
+def TileGPU_AddOp : Op<TileGPU_Dialect, "add">
+{
+    let summary = "add two elements";
+    let arguments = (ins F32:$lhs, F32:$rhs);
+    let results = (outs F32:$sum);
 }

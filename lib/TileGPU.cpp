@@ -11,7 +11,7 @@ namespace mlir::tilegpu
 {
     void TileGPUDialect::initialize()
     {
-        addOperations<GemmOp>();
+        addOperations<GemmOp, ReluOp, AddOp>();
     }
 
     LogicalResult GemmOp::verify()
