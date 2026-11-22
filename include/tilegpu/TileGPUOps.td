@@ -21,12 +21,8 @@ def TileGPU_GemmOp : Op<TileGPU_Dialect, "gemm">
                         StrAttr : $epilogues
                     );
 
-    //output
     let results = (outs);
-
-    //Declare the custom verifier
     let hasVerifier = 1;
-
 }
 
 /** ReluOp */
