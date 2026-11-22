@@ -8,7 +8,7 @@ def TileGPU_Dialect : Dialect
     let cppNamespace = "::mlir::tilegpu";
 }
 
-//define tilegpu.gemm
+//define GemmOp
 def TileGPU_GemmOp : Op<TileGPU_Dialect, "gemm">
 {
     let summary = "overwrite C with the matrix product of A and B";
@@ -23,7 +23,7 @@ def TileGPU_GemmOp : Op<TileGPU_Dialect, "gemm">
     //attributes
     DenseI64ArrayAttr : $tile,
     StrAttr : $epilogues
-    
+
     );
 
     //output
