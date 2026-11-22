@@ -7,6 +7,7 @@
 /root/python-mlir-gpu-compiler/build/CMakeFiles/mlir-headers.dir
 /root/python-mlir-gpu-compiler/build/CMakeFiles/mlir-generic-headers.dir
 /root/python-mlir-gpu-compiler/build/CMakeFiles/mlir-doc.dir
+/root/python-mlir-gpu-compiler/build/CMakeFiles/TileGPU.dir
 /root/python-mlir-gpu-compiler/build/CMakeFiles/edit_cache.dir
 /root/python-mlir-gpu-compiler/build/CMakeFiles/rebuild_cache.dir
 /root/python-mlir-gpu-compiler/build/include/tilegpu/CMakeFiles/MLIRTileGPUOpsIncGen.dir

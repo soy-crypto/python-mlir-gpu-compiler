@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/root/python-mlir-gpu-compiler/build",
+  "command": "/usr/bin/c++  -I/root/llvm-project/llvm/include -I/root/llvm-project/build/include -I/root/llvm-project/mlir/include -I/root/llvm-project/build/tools/mlir/include -I/root/python-mlir-gpu-compiler/include -I/root/python-mlir-gpu-compiler/build/include  -o CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o -c /root/python-mlir-gpu-compiler/lib/TileGPU.cpp",
+  "file": "/root/python-mlir-gpu-compiler/lib/TileGPU.cpp",
+  "output": "CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o"
+}
+]

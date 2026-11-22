@@ -26,6 +26,9 @@ namespace mlir::tilegpu
         {
             return emitOpError("requires A, B, and C to be rank-2 matrices");
         }
+
+        // return
+        return success();
     }
 
 } // namespace mlir::tilegpu

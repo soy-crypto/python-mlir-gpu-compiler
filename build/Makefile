@@ -234,6 +234,19 @@ mlir-doc/fast:
 .PHONY : mlir-doc/fast
 
 #=============================================================================
+# Target rules for targets named TileGPU
+
+# Build rule for target.
+TileGPU: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TileGPU
+.PHONY : TileGPU
+
+# fast build rule for target.
+TileGPU/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/build
+.PHONY : TileGPU/fast
+
+#=============================================================================
 # Target rules for targets named MLIRTileGPUOpsIncGen
 
 # Build rule for target.
@@ -245,6 +258,30 @@ MLIRTileGPUOpsIncGen: cmake_check_build_system
 MLIRTileGPUOpsIncGen/fast:
 	$(MAKE) $(MAKESILENT) -f include/tilegpu/CMakeFiles/MLIRTileGPUOpsIncGen.dir/build.make include/tilegpu/CMakeFiles/MLIRTileGPUOpsIncGen.dir/build
 .PHONY : MLIRTileGPUOpsIncGen/fast
+
+lib/TileGPU.o: lib/TileGPU.cpp.o
+.PHONY : lib/TileGPU.o
+
+# target to build an object file
+lib/TileGPU.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o
+.PHONY : lib/TileGPU.cpp.o
+
+lib/TileGPU.i: lib/TileGPU.cpp.i
+.PHONY : lib/TileGPU.i
+
+# target to preprocess a source file
+lib/TileGPU.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.i
+.PHONY : lib/TileGPU.cpp.i
+
+lib/TileGPU.s: lib/TileGPU.cpp.s
+.PHONY : lib/TileGPU.s
+
+# target to generate assembly for a file
+lib/TileGPU.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.s
+.PHONY : lib/TileGPU.cpp.s
 
 # Help Target
 help:
@@ -264,6 +301,10 @@ help:
 	@echo "... omp_gen"
 	@echo "... target_parser_gen"
 	@echo "... vt_gen"
+	@echo "... TileGPU"
+	@echo "... lib/TileGPU.o"
+	@echo "... lib/TileGPU.i"
+	@echo "... lib/TileGPU.s"
 .PHONY : help
 
 

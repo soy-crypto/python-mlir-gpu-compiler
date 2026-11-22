@@ -12,3 +12,5 @@ include_directories(${LLVM_INCLUDE_DIRS} ${MLIR_INCLUDE_DIRS})
 include_directories("${PROJECT_SOURCE_DIR}/include" "${PROJECT_BINARY_DIR}/include")
 
 add_subdirectory(include/tilegpu)
+add_library(TileGPU STATIC lib/TileGPU.cpp)
+add_dependencies(TileGPU MLIRTileGPUOpsIncGen)

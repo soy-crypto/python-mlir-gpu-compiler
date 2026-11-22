@@ -63,10 +63,12 @@ CMAKE_BINARY_DIR = /root/python-mlir-gpu-compiler/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/TileGPU.dir/all
 all: include/tilegpu/all
 .PHONY : all
 
 # The main recursive "codegen" target.
+codegen: CMakeFiles/TileGPU.dir/codegen
 codegen: include/tilegpu/codegen
 .PHONY : codegen
 
@@ -84,6 +86,7 @@ clean: CMakeFiles/mlir-tablegen-targets.dir/clean
 clean: CMakeFiles/mlir-headers.dir/clean
 clean: CMakeFiles/mlir-generic-headers.dir/clean
 clean: CMakeFiles/mlir-doc.dir/clean
+clean: CMakeFiles/TileGPU.dir/clean
 clean: include/tilegpu/clean
 .PHONY : clean
 
@@ -393,6 +396,38 @@ CMakeFiles/mlir-doc.dir/codegen:
 CMakeFiles/mlir-doc.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlir-doc.dir/build.make CMakeFiles/mlir-doc.dir/clean
 .PHONY : CMakeFiles/mlir-doc.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/TileGPU.dir
+
+# All Build rule for target.
+CMakeFiles/TileGPU.dir/all: include/tilegpu/CMakeFiles/MLIRTileGPUOpsIncGen.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/python-mlir-gpu-compiler/build/CMakeFiles --progress-num=7,8 "Built target TileGPU"
+.PHONY : CMakeFiles/TileGPU.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/TileGPU.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/python-mlir-gpu-compiler/build/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/TileGPU.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/python-mlir-gpu-compiler/build/CMakeFiles 0
+.PHONY : CMakeFiles/TileGPU.dir/rule
+
+# Convenience name for target.
+TileGPU: CMakeFiles/TileGPU.dir/rule
+.PHONY : TileGPU
+
+# codegen rule for target.
+CMakeFiles/TileGPU.dir/codegen: include/tilegpu/CMakeFiles/MLIRTileGPUOpsIncGen.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/python-mlir-gpu-compiler/build/CMakeFiles --progress-num=7,8 "Finished codegen for target TileGPU"
+.PHONY : CMakeFiles/TileGPU.dir/codegen
+
+# clean rule for target.
+CMakeFiles/TileGPU.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/clean
+.PHONY : CMakeFiles/TileGPU.dir/clean
 
 #=============================================================================
 # Target rules for target include/tilegpu/CMakeFiles/MLIRTileGPUOpsIncGen.dir
