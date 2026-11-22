@@ -1,9 +1,19 @@
-#include "tilegpu/TileGPU.h"
+#include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "llvm/Support/Casting.h"
 
+#include "tilegpu/TileGPU.h"
+#include "tilegpu/TileGPUOpsDialect.cpp.inc"
+#define GET_OP_CLASSES
+#include "tilegpu/TileGPUOps.cpp.inc"
+
 namespace mlir::tilegpu
 {
+    void TileGPUDialect::initialize()
+    {
+        addOperations<GemmOp>();
+    }
+
     LogicalResult GemmOp::verify()
     {
         // get opereands
