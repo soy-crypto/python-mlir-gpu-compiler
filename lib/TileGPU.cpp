@@ -22,9 +22,9 @@ namespace mlir::tilegpu
         auto c = llvm::cast<MemRefType>(getOutput().getType());
 
         // dimension checking
-        if (a.getRank() != 2 || b.getRank() != 2 || c.getRand() != 2)
+        if (a.getRank() != 2 || b.getRank() != 2 || c.getRank() != 2)
         {
-            mlir::MemRef
+            return emitOpError("requires A, B, and C to be rank-2 matrices");
         }
     }
 
