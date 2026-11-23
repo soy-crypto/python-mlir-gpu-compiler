@@ -39,10 +39,10 @@ namespace mlir::tilegpu
                 return builder.create<arith::ConstantIndexOp>(loc, n);
             };
 
-            Value gx = index(gridX);
-            Value gy = index(gridY);
-            Value bx = index(tileCols);
-            Value by = index(tileRows);
+            Value gx  = index(gridX);
+            Value gy  = index(gridY);
+            Value bx  = index(tileCols);
+            Value by  = index(tileRows);
             Value one = index(1);
             
             /* loops head */
@@ -58,6 +58,8 @@ namespace mlir::tilegpu
             Value row = builder.create<arith::AddIOp>(loc, firstRow, thread.y);
             Value firstCol = builder.create<arith::MulIOp>(loc, block.x, size.x);
             Value col = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
+
+            /**  */
             
 
             /** terminator */
