@@ -65,6 +65,9 @@ namespace mlir::tilegpu
             /** terminator */
             builder.create<gpu::TerminatorOp>(loc);
 
+            //return
+            return;
+
         }
 
         struct TileGPUToGPUPass : PassWrapper<TileGPUToGPUPass, OperationPass<ModuleOp>>
