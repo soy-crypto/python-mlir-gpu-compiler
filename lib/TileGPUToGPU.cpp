@@ -18,10 +18,10 @@ namespace mlir::tilegpu
         {
             // get atrr anbd tile
             auto cType = llvm::cast<MemRefType>(op.getOutput().getType());
-            auto tile = op.getTileAttr().asArrayRef();
+            auto tile  = op.getTileAttr().asArrayRef();
 
-            int64_t rows = cType.getDimSize(0);
-            int64_t cols = cType.getDimSize(1);
+            int64_t rows     = cType.getDimSize(0);
+            int64_t cols     = cType.getDimSize(1);
             int64_t tileRows = tile[0];
             int64_t tileCols = tile[1];
 
@@ -55,9 +55,9 @@ namespace mlir::tilegpu
             auto size   = launch.getBlockSize();
 
             Value firstRow = builder.create<arith::MulIOp>(loc, block.y, size.y);
-            Value row = builder.create<arith::AddIOp>(loc, firstRow, thread.y);
+            Value row      = builder.create<arith::AddIOp>(loc, firstRow, thread.y);
             Value firstCol = builder.create<arith::MulIOp>(loc, block.x, size.x);
-            Value col = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
+            Value col      = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
 
             /**  */
             
