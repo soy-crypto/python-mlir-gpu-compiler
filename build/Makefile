@@ -247,6 +247,19 @@ TileGPU/fast:
 .PHONY : TileGPU/fast
 
 #=============================================================================
+# Target rules for targets named tilegpu-opt
+
+# Build rule for target.
+tilegpu-opt: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tilegpu-opt
+.PHONY : tilegpu-opt
+
+# fast build rule for target.
+tilegpu-opt/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tilegpu-opt.dir/build.make CMakeFiles/tilegpu-opt.dir/build
+.PHONY : tilegpu-opt/fast
+
+#=============================================================================
 # Target rules for targets named MLIRTileGPUOpsIncGen
 
 # Build rule for target.
@@ -283,6 +296,30 @@ lib/TileGPU.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.s
 .PHONY : lib/TileGPU.cpp.s
 
+tools/tilegpu-opt.o: tools/tilegpu-opt.cpp.o
+.PHONY : tools/tilegpu-opt.o
+
+# target to build an object file
+tools/tilegpu-opt.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tilegpu-opt.dir/build.make CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o
+.PHONY : tools/tilegpu-opt.cpp.o
+
+tools/tilegpu-opt.i: tools/tilegpu-opt.cpp.i
+.PHONY : tools/tilegpu-opt.i
+
+# target to preprocess a source file
+tools/tilegpu-opt.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tilegpu-opt.dir/build.make CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.i
+.PHONY : tools/tilegpu-opt.cpp.i
+
+tools/tilegpu-opt.s: tools/tilegpu-opt.cpp.s
+.PHONY : tools/tilegpu-opt.s
+
+# target to generate assembly for a file
+tools/tilegpu-opt.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tilegpu-opt.dir/build.make CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.s
+.PHONY : tools/tilegpu-opt.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -302,9 +339,13 @@ help:
 	@echo "... target_parser_gen"
 	@echo "... vt_gen"
 	@echo "... TileGPU"
+	@echo "... tilegpu-opt"
 	@echo "... lib/TileGPU.o"
 	@echo "... lib/TileGPU.i"
 	@echo "... lib/TileGPU.s"
+	@echo "... tools/tilegpu-opt.o"
+	@echo "... tools/tilegpu-opt.i"
+	@echo "... tools/tilegpu-opt.s"
 .PHONY : help
 
 

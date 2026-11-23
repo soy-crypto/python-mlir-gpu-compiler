@@ -1,0 +1,217 @@
+tilegpu-opt: \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o \
+  /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o \
+  CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o \
+  libTileGPU.a \
+  /root/llvm-project/build/lib/libMLIRFuncDialect.a \
+  /root/llvm-project/build/lib/libMLIROptLib.a \
+  /root/llvm-project/build/lib/libMLIRBytecodeWriter.a \
+  /root/llvm-project/build/lib/libMLIRBytecodeOpInterface.a \
+  /root/llvm-project/build/lib/libMLIRDebug.a \
+  /root/llvm-project/build/lib/libMLIRObservers.a \
+  /root/llvm-project/build/lib/libMLIRParser.a \
+  /root/llvm-project/build/lib/libMLIRBytecodeReader.a \
+  /root/llvm-project/build/lib/libMLIRAsmParser.a \
+  /root/llvm-project/build/lib/libMLIRPluginsLib.a \
+  /root/llvm-project/build/lib/libMLIRPass.a \
+  /root/llvm-project/build/lib/libMLIRAnalysis.a \
+  /root/llvm-project/build/lib/libMLIRDataLayoutInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRDialectUtils.a \
+  /root/llvm-project/build/lib/libMLIRInferIntDivisibilityOpInterface.a \
+  /root/llvm-project/build/lib/libMLIRInferStridedMetadataInterface.a \
+  /root/llvm-project/build/lib/libMLIRInferIntRangeInterface.a \
+  /root/llvm-project/build/lib/libMLIRLoopLikeInterface.a \
+  /root/llvm-project/build/lib/libMLIRControlFlowInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRFunctionInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRCallInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRPresburger.a \
+  /root/llvm-project/build/lib/libMLIRViewLikeInterface.a \
+  /root/llvm-project/build/lib/libMLIRIRDL.a \
+  /root/llvm-project/build/lib/libMLIRSideEffectInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRInferTypeOpInterface.a \
+  /root/llvm-project/build/lib/libMLIRDialect.a \
+  /root/llvm-project/build/lib/libMLIRRemarkStreamer.a \
+  /root/llvm-project/build/lib/libMLIRIR.a \
+  /root/llvm-project/build/lib/libMLIRSupport.a \
+  /root/llvm-project/build/lib/libLLVMCore.a \
+  /root/llvm-project/build/lib/libLLVMRemarks.a \
+  /root/llvm-project/build/lib/libLLVMBinaryFormat.a \
+  /root/llvm-project/build/lib/libLLVMTargetParser.a \
+  /root/llvm-project/build/lib/libLLVMBitstreamReader.a \
+  /root/llvm-project/build/lib/libLLVMSupport.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/librt.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libdl.a \
+  /usr/lib/x86_64-linux-gnu/libz.so \
+  /usr/lib/x86_64-linux-gnu/libzstd.so \
+  /root/llvm-project/build/lib/libLLVMDemangle.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libstdc++.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libm.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libm.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libm.so \
+  /usr/lib/x86_64-linux-gnu/libm.so.6 \
+  /usr/lib/x86_64-linux-gnu/libmvec.so.1 \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libgcc_s.so.1 \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so \
+  /usr/lib/x86_64-linux-gnu/libc.so.6 \
+  /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
+  /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libgcc_s.so.1 \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o:
+
+CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
+
+libTileGPU.a:
+
+/root/llvm-project/build/lib/libMLIRFuncDialect.a:
+
+/root/llvm-project/build/lib/libMLIROptLib.a:
+
+/root/llvm-project/build/lib/libMLIRBytecodeWriter.a:
+
+/root/llvm-project/build/lib/libMLIRBytecodeOpInterface.a:
+
+/root/llvm-project/build/lib/libMLIRDebug.a:
+
+/root/llvm-project/build/lib/libMLIRObservers.a:
+
+/root/llvm-project/build/lib/libMLIRParser.a:
+
+/root/llvm-project/build/lib/libMLIRBytecodeReader.a:
+
+/root/llvm-project/build/lib/libMLIRAsmParser.a:
+
+/root/llvm-project/build/lib/libMLIRPluginsLib.a:
+
+/root/llvm-project/build/lib/libMLIRPass.a:
+
+/root/llvm-project/build/lib/libMLIRAnalysis.a:
+
+/root/llvm-project/build/lib/libMLIRDataLayoutInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRDialectUtils.a:
+
+/root/llvm-project/build/lib/libMLIRInferIntDivisibilityOpInterface.a:
+
+/root/llvm-project/build/lib/libMLIRInferStridedMetadataInterface.a:
+
+/root/llvm-project/build/lib/libMLIRInferIntRangeInterface.a:
+
+/root/llvm-project/build/lib/libMLIRLoopLikeInterface.a:
+
+/root/llvm-project/build/lib/libMLIRControlFlowInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRFunctionInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRCallInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRPresburger.a:
+
+/root/llvm-project/build/lib/libMLIRViewLikeInterface.a:
+
+/root/llvm-project/build/lib/libMLIRIRDL.a:
+
+/root/llvm-project/build/lib/libMLIRSideEffectInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRInferTypeOpInterface.a:
+
+/root/llvm-project/build/lib/libMLIRDialect.a:
+
+/root/llvm-project/build/lib/libMLIRRemarkStreamer.a:
+
+/root/llvm-project/build/lib/libMLIRIR.a:
+
+/root/llvm-project/build/lib/libMLIRSupport.a:
+
+/root/llvm-project/build/lib/libLLVMCore.a:
+
+/root/llvm-project/build/lib/libLLVMRemarks.a:
+
+/root/llvm-project/build/lib/libLLVMBinaryFormat.a:
+
+/root/llvm-project/build/lib/libLLVMTargetParser.a:
+
+/root/llvm-project/build/lib/libLLVMBitstreamReader.a:
+
+/root/llvm-project/build/lib/libLLVMSupport.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/librt.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libdl.a:
+
+/usr/lib/x86_64-linux-gnu/libz.so:
+
+/usr/lib/x86_64-linux-gnu/libzstd.so:
+
+/root/llvm-project/build/lib/libLLVMDemangle.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libstdc++.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libm.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libm.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libm.so:
+
+/usr/lib/x86_64-linux-gnu/libm.so.6:
+
+/usr/lib/x86_64-linux-gnu/libmvec.so.1:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libgcc_s.so.1:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libc.so:
+
+/usr/lib/x86_64-linux-gnu/libc.so.6:
+
+/usr/lib/x86_64-linux-gnu/libc_nonshared.a:
+
+/lib64/ld-linux-x86-64.so.2:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libgcc_s.so.1:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o:

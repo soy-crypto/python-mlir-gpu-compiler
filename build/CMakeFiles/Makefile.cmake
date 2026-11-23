@@ -89,5 +89,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/mlir-generic-headers.dir/DependInfo.cmake"
   "CMakeFiles/mlir-doc.dir/DependInfo.cmake"
   "CMakeFiles/TileGPU.dir/DependInfo.cmake"
+  "CMakeFiles/tilegpu-opt.dir/DependInfo.cmake"
   "include/tilegpu/CMakeFiles/MLIRTileGPUOpsIncGen.dir/DependInfo.cmake"
   )

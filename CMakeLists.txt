@@ -14,3 +14,10 @@ include_directories("${PROJECT_SOURCE_DIR}/include" "${PROJECT_BINARY_DIR}/inclu
 add_subdirectory(include/tilegpu)
 add_library(TileGPU STATIC lib/TileGPU.cpp)
 add_dependencies(TileGPU MLIRTileGPUOpsIncGen)
+
+target_link_libraries(TileGPU PUBLIC MLIRIR MLIRBytecodeOpInterface MLIRSideEffectInterfaces)
+add_executable(tilegpu-opt tools/tilegpu-opt.cpp)
+target_link_libraries(tilegpu-opt PRIVATE TileGPU MLIRFuncDialect MLIROptLib)
+
+llvm_update_compile_flags(TileGPU)
+llvm_update_compile_flags(tilegpu-opt)

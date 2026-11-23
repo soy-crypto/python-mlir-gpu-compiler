@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/root/llvm-project/llvm/include -I/root/llvm-project/build/include -I/root/llvm-project/mlir/include -I/root/llvm-project/build/tools/mlir/include -I/root/python-mlir-gpu-compiler/include -I/root/python-mlir-gpu-compiler/build/include
 
-CXX_FLAGS = 
+CXX_FLAGS = -fno-exceptions -funwind-tables -fno-rtti
 
