@@ -18,7 +18,7 @@ def TileGPU_GemmOp : Op<TileGPU_Dialect, "gemm">
                         Arg<F32MemRef, "right matrix",  [MemRead]>  : $rhs, 
                         Arg<F32MemRef, "output matrix", [MemWrite]> : $output,
                         DenseI64ArrayAttr : $tile,
-                        StrAttr : $epilogues
+                        StrAttr : $epilogue
                     );
 
     let results = (outs);
