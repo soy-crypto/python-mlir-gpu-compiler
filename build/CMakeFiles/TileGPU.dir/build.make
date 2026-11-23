@@ -86,17 +86,33 @@ CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/python-mlir-gpu-compiler/lib/TileGPU.cpp -o CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.s
 
+CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: CMakeFiles/TileGPU.dir/flags.make
+CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/lib/TileGPUToGPU.cpp
+CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: CMakeFiles/TileGPU.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/python-mlir-gpu-compiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o -MF CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o.d -o CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o -c /root/python-mlir-gpu-compiler/lib/TileGPUToGPU.cpp
+
+CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/python-mlir-gpu-compiler/lib/TileGPUToGPU.cpp > CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.i
+
+CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/python-mlir-gpu-compiler/lib/TileGPUToGPU.cpp -o CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.s
+
 # Object files for target TileGPU
 TileGPU_OBJECTS = \
-"CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o"
+"CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o" \
+"CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o"
 
 # External object files for target TileGPU
 TileGPU_EXTERNAL_OBJECTS =
 
 libTileGPU.a: CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o
+libTileGPU.a: CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o
 libTileGPU.a: CMakeFiles/TileGPU.dir/build.make
 libTileGPU.a: CMakeFiles/TileGPU.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/python-mlir-gpu-compiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libTileGPU.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/python-mlir-gpu-compiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libTileGPU.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/TileGPU.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TileGPU.dir/link.txt --verbose=$(VERBOSE)
 

@@ -296,6 +296,30 @@ lib/TileGPU.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.s
 .PHONY : lib/TileGPU.cpp.s
 
+lib/TileGPUToGPU.o: lib/TileGPUToGPU.cpp.o
+.PHONY : lib/TileGPUToGPU.o
+
+# target to build an object file
+lib/TileGPUToGPU.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o
+.PHONY : lib/TileGPUToGPU.cpp.o
+
+lib/TileGPUToGPU.i: lib/TileGPUToGPU.cpp.i
+.PHONY : lib/TileGPUToGPU.i
+
+# target to preprocess a source file
+lib/TileGPUToGPU.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.i
+.PHONY : lib/TileGPUToGPU.cpp.i
+
+lib/TileGPUToGPU.s: lib/TileGPUToGPU.cpp.s
+.PHONY : lib/TileGPUToGPU.s
+
+# target to generate assembly for a file
+lib/TileGPUToGPU.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TileGPU.dir/build.make CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.s
+.PHONY : lib/TileGPUToGPU.cpp.s
+
 tools/tilegpu-opt.o: tools/tilegpu-opt.cpp.o
 .PHONY : tools/tilegpu-opt.o
 
@@ -343,6 +367,9 @@ help:
 	@echo "... lib/TileGPU.o"
 	@echo "... lib/TileGPU.i"
 	@echo "... lib/TileGPU.s"
+	@echo "... lib/TileGPUToGPU.o"
+	@echo "... lib/TileGPUToGPU.i"
+	@echo "... lib/TileGPUToGPU.s"
 	@echo "... tools/tilegpu-opt.o"
 	@echo "... tools/tilegpu-opt.i"
 	@echo "... tools/tilegpu-opt.s"

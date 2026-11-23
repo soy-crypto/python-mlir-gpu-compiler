@@ -3,10 +3,13 @@
 #include "mlir/IR/DialectRegistry.h"
 #include "mlir/Tools/mlir-opt/MlirOptMain.h"
 
+#include "tilegpu/Passes.h"
+
 int main(int argc, char **argv)
 {
     mlir::DialectRegistry registry;
     registry.insert<mlir::func::FuncDialect, mlir::tilegpu::TileGPUDialect>();
+    mlir::tilegpu::registerTileGPUToGPUPass();
 
     return mlir::asMainReturnCode(mlir::MlirOptMain(argc, argv, "TileGPU optimizer", registry));
 }

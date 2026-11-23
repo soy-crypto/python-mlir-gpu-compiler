@@ -175,6 +175,7 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o
  /root/llvm-project/mlir/include/mlir/Tools/mlir-opt/MlirOptMain.h
  /root/python-mlir-gpu-compiler/build/include/tilegpu/TileGPUOps.h.inc
  /root/python-mlir-gpu-compiler/build/include/tilegpu/TileGPUOpsDialect.h.inc
+ /root/python-mlir-gpu-compiler/include/tilegpu/Passes.h
  /root/python-mlir-gpu-compiler/include/tilegpu/TileGPU.h
  /usr/include/alloca.h
  /usr/include/asm-generic/bitsperlong.h

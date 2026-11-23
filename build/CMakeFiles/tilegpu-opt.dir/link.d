@@ -6,6 +6,21 @@ tilegpu-opt: \
   libTileGPU.a \
   /root/llvm-project/build/lib/libMLIRFuncDialect.a \
   /root/llvm-project/build/lib/libMLIROptLib.a \
+  /root/llvm-project/build/lib/libMLIRGPUDialect.a \
+  /root/llvm-project/build/lib/libMLIRDLTIDialect.a \
+  /root/llvm-project/build/lib/libMLIRMathDialect.a \
+  /root/llvm-project/build/lib/libMLIRMemRefDialect.a \
+  /root/llvm-project/build/lib/libMLIRArithUtils.a \
+  /root/llvm-project/build/lib/libMLIRComplexDialect.a \
+  /root/llvm-project/build/lib/libMLIRArithDialect.a \
+  /root/llvm-project/build/lib/libMLIRCastInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRInferIntRangeCommon.a \
+  /root/llvm-project/build/lib/libMLIRShapedOpInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRUBDialect.a \
+  /root/llvm-project/build/lib/libMLIRMemOpInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRMemorySlotInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRValueBoundsOpInterface.a \
+  /root/llvm-project/build/lib/libMLIRDestinationStyleOpInterface.a \
   /root/llvm-project/build/lib/libMLIRBytecodeWriter.a \
   /root/llvm-project/build/lib/libMLIRBytecodeOpInterface.a \
   /root/llvm-project/build/lib/libMLIRDebug.a \
@@ -16,17 +31,17 @@ tilegpu-opt: \
   /root/llvm-project/build/lib/libMLIRPluginsLib.a \
   /root/llvm-project/build/lib/libMLIRPass.a \
   /root/llvm-project/build/lib/libMLIRAnalysis.a \
+  /root/llvm-project/build/lib/libMLIRInferIntDivisibilityOpInterface.a \
   /root/llvm-project/build/lib/libMLIRDataLayoutInterfaces.a \
   /root/llvm-project/build/lib/libMLIRDialectUtils.a \
-  /root/llvm-project/build/lib/libMLIRInferIntDivisibilityOpInterface.a \
   /root/llvm-project/build/lib/libMLIRInferStridedMetadataInterface.a \
   /root/llvm-project/build/lib/libMLIRInferIntRangeInterface.a \
+  /root/llvm-project/build/lib/libMLIRViewLikeInterface.a \
   /root/llvm-project/build/lib/libMLIRLoopLikeInterface.a \
   /root/llvm-project/build/lib/libMLIRControlFlowInterfaces.a \
   /root/llvm-project/build/lib/libMLIRFunctionInterfaces.a \
   /root/llvm-project/build/lib/libMLIRCallInterfaces.a \
   /root/llvm-project/build/lib/libMLIRPresburger.a \
-  /root/llvm-project/build/lib/libMLIRViewLikeInterface.a \
   /root/llvm-project/build/lib/libMLIRIRDL.a \
   /root/llvm-project/build/lib/libMLIRSideEffectInterfaces.a \
   /root/llvm-project/build/lib/libMLIRInferTypeOpInterface.a \
@@ -86,6 +101,36 @@ libTileGPU.a:
 
 /root/llvm-project/build/lib/libMLIROptLib.a:
 
+/root/llvm-project/build/lib/libMLIRGPUDialect.a:
+
+/root/llvm-project/build/lib/libMLIRDLTIDialect.a:
+
+/root/llvm-project/build/lib/libMLIRMathDialect.a:
+
+/root/llvm-project/build/lib/libMLIRMemRefDialect.a:
+
+/root/llvm-project/build/lib/libMLIRArithUtils.a:
+
+/root/llvm-project/build/lib/libMLIRComplexDialect.a:
+
+/root/llvm-project/build/lib/libMLIRArithDialect.a:
+
+/root/llvm-project/build/lib/libMLIRCastInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRInferIntRangeCommon.a:
+
+/root/llvm-project/build/lib/libMLIRShapedOpInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRUBDialect.a:
+
+/root/llvm-project/build/lib/libMLIRMemOpInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRMemorySlotInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRValueBoundsOpInterface.a:
+
+/root/llvm-project/build/lib/libMLIRDestinationStyleOpInterface.a:
+
 /root/llvm-project/build/lib/libMLIRBytecodeWriter.a:
 
 /root/llvm-project/build/lib/libMLIRBytecodeOpInterface.a:
@@ -106,15 +151,17 @@ libTileGPU.a:
 
 /root/llvm-project/build/lib/libMLIRAnalysis.a:
 
+/root/llvm-project/build/lib/libMLIRInferIntDivisibilityOpInterface.a:
+
 /root/llvm-project/build/lib/libMLIRDataLayoutInterfaces.a:
 
 /root/llvm-project/build/lib/libMLIRDialectUtils.a:
 
-/root/llvm-project/build/lib/libMLIRInferIntDivisibilityOpInterface.a:
-
 /root/llvm-project/build/lib/libMLIRInferStridedMetadataInterface.a:
 
 /root/llvm-project/build/lib/libMLIRInferIntRangeInterface.a:
+
+/root/llvm-project/build/lib/libMLIRViewLikeInterface.a:
 
 /root/llvm-project/build/lib/libMLIRLoopLikeInterface.a:
 
@@ -125,8 +172,6 @@ libTileGPU.a:
 /root/llvm-project/build/lib/libMLIRCallInterfaces.a:
 
 /root/llvm-project/build/lib/libMLIRPresburger.a:
-
-/root/llvm-project/build/lib/libMLIRViewLikeInterface.a:
 
 /root/llvm-project/build/lib/libMLIRIRDL.a:
 

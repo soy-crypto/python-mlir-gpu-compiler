@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o"
   "CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o.d"
+  "CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o"
+  "CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o.d"
   "libTileGPU.a"
   "libTileGPU.pdb"
 )

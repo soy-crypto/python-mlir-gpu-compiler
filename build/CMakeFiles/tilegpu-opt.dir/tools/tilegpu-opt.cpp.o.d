@@ -420,4 +420,5 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o: \
  /root/llvm-project/mlir/include/mlir/IR/Action.h \
  /root/llvm-project/mlir/include/mlir/IR/Unit.h \
  /root/llvm-project/mlir/include/mlir/Debug/ExecutionContext.h \
- /root/llvm-project/mlir/include/mlir/Support/ToolUtilities.h
+ /root/llvm-project/mlir/include/mlir/Support/ToolUtilities.h \
+ /root/python-mlir-gpu-compiler/include/tilegpu/Passes.h

@@ -174,6 +174,7 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o: /root/python-mlir-gpu-compil
   /root/llvm-project/mlir/include/mlir/Tools/mlir-opt/MlirOptMain.h \
   include/tilegpu/TileGPUOps.h.inc \
   include/tilegpu/TileGPUOpsDialect.h.inc \
+  /root/python-mlir-gpu-compiler/include/tilegpu/Passes.h \
   /root/python-mlir-gpu-compiler/include/tilegpu/TileGPU.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -551,7 +552,7 @@ libTileGPU.a:
 
 CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
 
-/usr/include/linux/stddef.h:
+/usr/lib/x86_64-linux-gnu/libzstd.so:
 
 /usr/include/c++/15/bits/stl_construct.h:
 
@@ -560,10 +561,6 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
 /usr/include/c++/15/bits/stl_bvector.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
-
-/usr/include/c++/15/bits/stl_algobase.h:
-
-/usr/include/c++/15/bits/stl_relops.h:
 
 /usr/include/c++/15/bits/specfun.h:
 
@@ -671,6 +668,10 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
 
 /usr/include/alloca.h:
 
+/usr/include/c++/15/bits/stl_algobase.h:
+
+/usr/include/c++/15/bits/stl_relops.h:
+
 /root/llvm-project/build/lib/libLLVMTargetParser.a:
 
 /root/llvm-project/mlir/include/mlir/Support/ToolUtilities.h:
@@ -714,10 +715,6 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
 /root/llvm-project/mlir/include/mlir/IR/PDLPatternMatch.h.inc:
 
 /root/llvm-project/mlir/include/mlir/IR/OwningOpRef.h:
-
-/usr/include/c++/15/bits/locale_classes.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/include/c++/15/bits/memory_resource.h:
 
@@ -814,6 +811,12 @@ include/tilegpu/TileGPUOpsDialect.h.inc:
 /usr/include/c++/15/initializer_list:
 
 /root/llvm-project/llvm/include/llvm/ADT/ADL.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/c++/15/bits/locale_classes.h:
+
+/usr/include/linux/stddef.h:
 
 /root/llvm-project/mlir/include/mlir/IR/Types.h:
 
@@ -1451,6 +1454,8 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
+/root/python-mlir-gpu-compiler/include/tilegpu/Passes.h:
+
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
 /root/llvm-project/mlir/include/mlir/IR/BuiltinTypes.h:
@@ -1630,5 +1635,3 @@ include/tilegpu/TileGPUOps.h.inc:
 /usr/include/c++/15/complex:
 
 /usr/lib/x86_64-linux-gnu/libz.so:
-
-/usr/lib/x86_64-linux-gnu/libzstd.so:

@@ -1,2 +1,2 @@
-/usr/bin/ar qc libTileGPU.a CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o
+/usr/bin/ar qc libTileGPU.a CMakeFiles/TileGPU.dir/lib/TileGPU.cpp.o CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o
 /usr/bin/ranlib libTileGPU.a

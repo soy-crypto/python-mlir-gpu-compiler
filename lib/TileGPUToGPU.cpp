@@ -6,6 +6,9 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Pass/PassRegistry.h"
 #include "llvm/Support/Casting.h"
+#include "mlir/Dialect/Arith/IR/Arith.h"
+#include "mlir/Dialect/GPU/IR/GPUDialect.h"
+#include "mlir/IR/Builders.h"
 
 namespace mlir::tilegpu
 {
@@ -26,8 +29,40 @@ namespace mlir::tilegpu
             int64_t gridX = cols / tileCols;
             int64_t gridY = rows / tileRows;
 
-            //
-            op.emitRemark() << "grid=(" << gridX << "," << gridY << "), block=(" << tileCols << "," << tileRows << ")";
+            //build input parameter for gpu launch
+            /** init */
+            OpBuilder builder(op.getOperation());
+            Location loc = op.getLoc();
+
+            auto index = [&](int64_t n) -> Value
+            {
+                return builder.create<arith::ConstantIndexOp>(loc, n);
+            };
+
+            Value gx = index(gridX);
+            Value gy = index(gridY);
+            Value bx = index(tileCols);
+            Value by = index(tileRows);
+            Value one = index(1);
+            
+            /* loops head */
+            auto launch = builder.create<gpu::LaunchOp>(loc, gx, gy, one, bx, by, one);
+            builder.setInsertionPointToStart(&launch.getBody().front());
+            
+            /* gemm body */
+            auto block  = launch.getBlockIds();
+            auto thread = launch.getThreadIds();
+            auto size   = launch.getBlockSize();
+
+            Value firstRow = builder.create<arith::MulIOp>(loc, block.y, size.y);
+            Value row = builder.create<arith::AddIOp>(loc, firstRow, thread.y);
+            Value firstCol = builder.create<arith::MulIOp>(loc, block.x, size.x);
+            Value col = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
+            
+
+            /** terminator */
+            builder.create<gpu::TerminatorOp>(loc);
+
         }
 
         struct TileGPUToGPUPass : PassWrapper<TileGPUToGPUPass, OperationPass<ModuleOp>>
@@ -47,11 +82,17 @@ namespace mlir::tilegpu
                 }
                 );
             }
+
+            void getDependentDialects(DialectRegistry& registry) const override
+            {
+                registry.insert<arith::ArithDialect, gpu::GPUDialect>();
+            }
+
         };
 
     } // namespace
 
-    void registryTileGPUToGPUPass()
+    void registerTileGPUToGPUPass()
     {
         PassRegistration<TileGPUToGPUPass>{};
     }

@@ -7,6 +7,12 @@
 },
 {
   "directory": "/root/python-mlir-gpu-compiler/build",
+  "command": "/usr/bin/c++  -I/root/llvm-project/llvm/include -I/root/llvm-project/build/include -I/root/llvm-project/mlir/include -I/root/llvm-project/build/tools/mlir/include -I/root/python-mlir-gpu-compiler/include -I/root/python-mlir-gpu-compiler/build/include -fno-exceptions -funwind-tables -fno-rtti -o CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o -c /root/python-mlir-gpu-compiler/lib/TileGPUToGPU.cpp",
+  "file": "/root/python-mlir-gpu-compiler/lib/TileGPUToGPU.cpp",
+  "output": "CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o"
+},
+{
+  "directory": "/root/python-mlir-gpu-compiler/build",
   "command": "/usr/bin/c++  -I/root/llvm-project/llvm/include -I/root/llvm-project/build/include -I/root/llvm-project/mlir/include -I/root/llvm-project/build/tools/mlir/include -I/root/python-mlir-gpu-compiler/include -I/root/python-mlir-gpu-compiler/build/include -fno-exceptions -funwind-tables -fno-rtti -o CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o -c /root/python-mlir-gpu-compiler/tools/tilegpu-opt.cpp",
   "file": "/root/python-mlir-gpu-compiler/tools/tilegpu-opt.cpp",
   "output": "CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o"
