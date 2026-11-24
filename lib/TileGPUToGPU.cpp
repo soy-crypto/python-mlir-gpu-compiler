@@ -6,9 +6,12 @@
 #include "mlir/Pass/Pass.h"
 #include "mlir/Pass/PassRegistry.h"
 #include "llvm/Support/Casting.h"
+
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
+#include "mlir/Dialect/MemRef/IR/MemRef.h"
+
 #include "mlir/IR/Builders.h"
 
 namespace mlir::tilegpu
@@ -27,6 +30,9 @@ namespace mlir::tilegpu
             int64_t gridRows = rows / tileRows;
             int64_t gridCols = cols / tileCols;
 
+            Value A = op.getLhs();
+            Value B = op.getRhs();
+
             // gpu launch implementation
             /** launch head */
             OpBuilder builder(op.getOperation());
@@ -36,8 +42,8 @@ namespace mlir::tilegpu
             Value gCols  = index(gridCols);
             Value bRows  = index(tileRows);
             Value bCols  = index(tileRows);
-            Value step   = index(1);
-            auto launch  = builder.create<gpu::LaunchOp>(loc, gRows, gCols, step, bRows, bCols);
+            Value one   = index(1);
+            auto launch  = builder.create<gpu::LaunchOp>(loc, gRows, gCols, one, bRows, bCols, one);
             builder.setInsertionPointToStart(&launch.getBody().front());
             
             /* launch body */
@@ -51,17 +57,18 @@ namespace mlir::tilegpu
             Value col      = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
 
             /** k tiles loop */
-            auto aType   = llvm::cast<MemRefType>(op.getLhs().getType());
-            Value start  = index(0);
-            Value end    = index(aType.getDimSize(1));
-            Value cStep  = index(tileCols);
-            Value cZero  = builder.create<arith::ConstantOp>(loc, builder.getF32FloatAttr(0.0));
-            auto kLoop = builder.create<scf::ForOp>(loc, start, end, cStep, ValueRange{cZero});
+            auto aType  = llvm::cast<MemRefType>(op.getLhs().getType());
+            Value start = index(0);
+            Value end   = index(aType.getDimSize(1));
+            Value step  = index(tileCols);
+            Value zero  = builder.create<arith::ConstantOp>(loc, builder.getF32FloatAttr(0.0));
+            auto kLoopOp  = builder.create<scf::ForOp>(loc, start, end, step, ValueRange{zero});
+            builder.setInsertionPointToStart(kLoopOp.getBody());
             
-            
-            
+            Value k = kLoopOp.getNumInductionVars()[0];
+            builder.create<memref::LoadOp>(loc, )
 
-
+ 
             /** terminator */
             builder.create<gpu::TerminatorOp>(loc);
 
@@ -69,7 +76,8 @@ namespace mlir::tilegpu
             return;
 
         }
-
+        
+        //pass
         struct TileGPUToGPUPass : PassWrapper<TileGPUToGPUPass, OperationPass<ModuleOp>>
         {
             MLIR_DEFINE_EXPLICIT_INTERNAL_INLINE_TYPE_ID(TileGPUToGPUPass);
@@ -90,7 +98,7 @@ namespace mlir::tilegpu
 
             void getDependentDialects(DialectRegistry& registry) const override
             {
-                registry.insert<arith::ArithDialect, gpu::GPUDialect, scf::SCFDialect>();
+                registry.insert<arith::ArithDialect, gpu::GPUDialect, scf::SCFDialect>(), >;
             }
 
         };

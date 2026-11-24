@@ -455,6 +455,8 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/build/tools/mlir/include/mlir/Dialect/GPU/IR/GPUOpsDialect.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Dialect/GPU/IR/GPUOpsEnums.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Dialect/SCF/IR/DeviceMappingAttrInterface.h.inc \
+  /root/llvm-project/build/tools/mlir/include/mlir/Dialect/SCF/IR/SCFOps.h.inc \
+  /root/llvm-project/build/tools/mlir/include/mlir/Dialect/SCF/IR/SCFOpsDialect.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/IR/BuiltinAttributeInterfaces.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/IR/BuiltinAttributes.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/IR/BuiltinLocationAttributes.h.inc \
@@ -477,12 +479,18 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/DataLayoutDialectInterface.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/DataLayoutOpInterface.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/DataLayoutTypeInterface.h.inc \
+  /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/DestinationStyleOpInterface.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/FunctionInterfaces.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/InferIntDivisibilityOpInterface.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/InferIntRangeInterface.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/InferTypeOpInterface.h.inc \
+  /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/LoopLikeInterface.h.inc \
+  /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/MemorySlotOpInterfaces.h.inc \
+  /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/MemorySlotTypeInterfaces.h.inc \
+  /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/ParallelCombiningOpInterface.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/SideEffectInterfaces.h.inc \
   /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/VectorInterfaces.h.inc \
+  /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/ViewLikeInterface.h.inc \
   /root/llvm-project/llvm/include/llvm-c/DataTypes.h \
   /root/llvm-project/llvm/include/llvm-c/Error.h \
   /root/llvm-project/llvm/include/llvm-c/ExternC.h \
@@ -502,6 +510,7 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/llvm/include/llvm/ADT/EpochTracker.h \
   /root/llvm-project/llvm/include/llvm/ADT/FloatingPointMode.h \
   /root/llvm-project/llvm/include/llvm/ADT/FunctionExtras.h \
+  /root/llvm-project/llvm/include/llvm/ADT/GraphTraits.h \
   /root/llvm-project/llvm/include/llvm/ADT/Hashing.h \
   /root/llvm-project/llvm/include/llvm/ADT/MapVector.h \
   /root/llvm-project/llvm/include/llvm/ADT/PointerIntPair.h \
@@ -575,6 +584,8 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/llvm/include/llvm/Support/AllocatorBase.h \
   /root/llvm-project/llvm/include/llvm/Support/AtomicOrdering.h \
   /root/llvm-project/llvm/include/llvm/Support/CBindingWrapping.h \
+  /root/llvm-project/llvm/include/llvm/Support/CFGDiff.h \
+  /root/llvm-project/llvm/include/llvm/Support/CFGUpdate.h \
   /root/llvm-project/llvm/include/llvm/Support/Casting.h \
   /root/llvm-project/llvm/include/llvm/Support/CodeGen.h \
   /root/llvm-project/llvm/include/llvm/Support/CommandLine.h \
@@ -585,6 +596,7 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/llvm/include/llvm/Support/ErrorHandling.h \
   /root/llvm-project/llvm/include/llvm/Support/ErrorOr.h \
   /root/llvm-project/llvm/include/llvm/Support/Format.h \
+  /root/llvm-project/llvm/include/llvm/Support/GenericDomTree.h \
   /root/llvm-project/llvm/include/llvm/Support/LogicalResult.h \
   /root/llvm-project/llvm/include/llvm/Support/MathExtras.h \
   /root/llvm-project/llvm/include/llvm/Support/MemAlloc.h \
@@ -607,10 +619,13 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/mlir/include/mlir/Bytecode/BytecodeImplementation.h \
   /root/llvm-project/mlir/include/mlir/Bytecode/BytecodeOpInterface.h \
   /root/llvm-project/mlir/include/mlir/Dialect/Arith/IR/Arith.h \
+  /root/llvm-project/mlir/include/mlir/Dialect/Arith/Utils/Utils.h \
   /root/llvm-project/mlir/include/mlir/Dialect/DLTI/Traits.h \
   /root/llvm-project/mlir/include/mlir/Dialect/GPU/IR/CompilationInterfaces.h \
   /root/llvm-project/mlir/include/mlir/Dialect/GPU/IR/GPUDialect.h \
   /root/llvm-project/mlir/include/mlir/Dialect/SCF/IR/DeviceMappingInterface.h \
+  /root/llvm-project/mlir/include/mlir/Dialect/SCF/IR/SCF.h \
+  /root/llvm-project/mlir/include/mlir/Dialect/Utils/StaticValueUtils.h \
   /root/llvm-project/mlir/include/mlir/IR/Action.h \
   /root/llvm-project/mlir/include/mlir/IR/AffineExpr.h \
   /root/llvm-project/mlir/include/mlir/IR/AffineMap.h \
@@ -629,8 +644,11 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/mlir/include/mlir/IR/Dialect.h \
   /root/llvm-project/mlir/include/mlir/IR/DialectInterface.h \
   /root/llvm-project/mlir/include/mlir/IR/DialectRegistry.h \
+  /root/llvm-project/mlir/include/mlir/IR/Dominance.h \
+  /root/llvm-project/mlir/include/mlir/IR/IRMapping.h \
   /root/llvm-project/mlir/include/mlir/IR/Location.h \
   /root/llvm-project/mlir/include/mlir/IR/MLIRContext.h \
+  /root/llvm-project/mlir/include/mlir/IR/Matchers.h \
   /root/llvm-project/mlir/include/mlir/IR/ODSSupport.h \
   /root/llvm-project/mlir/include/mlir/IR/OpAsmSupport.h \
   /root/llvm-project/mlir/include/mlir/IR/OpDefinition.h \
@@ -642,6 +660,7 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/mlir/include/mlir/IR/PatternMatch.h \
   /root/llvm-project/mlir/include/mlir/IR/QuantStorageTypeInterface.h \
   /root/llvm-project/mlir/include/mlir/IR/Region.h \
+  /root/llvm-project/mlir/include/mlir/IR/RegionGraphTraits.h \
   /root/llvm-project/mlir/include/mlir/IR/RegionKindInterface.h \
   /root/llvm-project/mlir/include/mlir/IR/StorageUniquerSupport.h \
   /root/llvm-project/mlir/include/mlir/IR/SymbolTable.h \
@@ -658,12 +677,17 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
   /root/llvm-project/mlir/include/mlir/Interfaces/CastInterfaces.h \
   /root/llvm-project/mlir/include/mlir/Interfaces/ControlFlowInterfaces.h \
   /root/llvm-project/mlir/include/mlir/Interfaces/DataLayoutInterfaces.h \
+  /root/llvm-project/mlir/include/mlir/Interfaces/DestinationStyleOpInterface.h \
   /root/llvm-project/mlir/include/mlir/Interfaces/FunctionInterfaces.h \
   /root/llvm-project/mlir/include/mlir/Interfaces/InferIntDivisibilityOpInterface.h \
   /root/llvm-project/mlir/include/mlir/Interfaces/InferIntRangeInterface.h \
   /root/llvm-project/mlir/include/mlir/Interfaces/InferTypeOpInterface.h \
+  /root/llvm-project/mlir/include/mlir/Interfaces/LoopLikeInterface.h \
+  /root/llvm-project/mlir/include/mlir/Interfaces/MemorySlotInterfaces.h \
+  /root/llvm-project/mlir/include/mlir/Interfaces/ParallelCombiningOpInterface.h \
   /root/llvm-project/mlir/include/mlir/Interfaces/SideEffectInterfaces.h \
   /root/llvm-project/mlir/include/mlir/Interfaces/VectorInterfaces.h \
+  /root/llvm-project/mlir/include/mlir/Interfaces/ViewLikeInterface.h \
   /root/llvm-project/mlir/include/mlir/Pass/AnalysisManager.h \
   /root/llvm-project/mlir/include/mlir/Pass/Pass.h \
   /root/llvm-project/mlir/include/mlir/Pass/PassInstrumentation.h \
@@ -1010,9 +1034,37 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 
 /root/llvm-project/mlir/include/mlir/Pass/Pass.h:
 
-/usr/include/c++/15/debug/assertions.h:
+/root/llvm-project/mlir/include/mlir/Interfaces/ParallelCombiningOpInterface.h:
 
-/root/llvm-project/build/tools/mlir/include/mlir/IR/BuiltinTypeInterfaces.h.inc:
+/root/llvm-project/mlir/include/mlir/Interfaces/MemorySlotInterfaces.h:
+
+/root/llvm-project/mlir/include/mlir/Interfaces/FunctionInterfaces.h:
+
+/root/llvm-project/mlir/include/mlir/Interfaces/DataLayoutInterfaces.h:
+
+/root/llvm-project/mlir/include/mlir/Interfaces/CallInterfaces.h:
+
+/root/llvm-project/mlir/include/mlir/IR/Unit.h:
+
+/root/llvm-project/mlir/include/mlir/IR/TypeUtilities.h:
+
+/root/llvm-project/mlir/include/mlir/IR/RegionKindInterface.h:
+
+/root/llvm-project/mlir/include/mlir/IR/RegionGraphTraits.h:
+
+/root/llvm-project/mlir/include/mlir/IR/PatternMatch.h:
+
+/root/llvm-project/mlir/include/mlir/IR/OwningOpRef.h:
+
+/root/llvm-project/mlir/include/mlir/IR/Matchers.h:
+
+/root/llvm-project/mlir/include/mlir/IR/IRMapping.h:
+
+/root/llvm-project/mlir/include/mlir/IR/BuiltinOps.h:
+
+/root/llvm-project/mlir/include/mlir/IR/Action.h:
+
+/usr/include/c++/15/debug/assertions.h:
 
 /usr/include/c++/15/complex:
 
@@ -1054,11 +1106,11 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 
 /root/llvm-project/mlir/include/mlir/Support/StorageUniquer.h:
 
+/root/llvm-project/build/tools/mlir/include/mlir/Interfaces/MemorySlotTypeInterfaces.h.inc:
+
 /usr/include/c++/15/ratio:
 
 /usr/include/c++/15/bits/stl_map.h:
-
-/usr/include/linux/stddef.h:
 
 /usr/include/c++/15/bits/stl_construct.h:
 
@@ -1094,6 +1146,8 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 
 /root/llvm-project/llvm/include/llvm/IR/DbgVariableFragmentInfo.h:
 
+/root/llvm-project/llvm/include/llvm/Support/GenericDomTree.h:
+
 /usr/include/c++/15/bits/shared_ptr.h:
 
 /root/llvm-project/llvm/include/llvm/IR/GlobalIFunc.h:
@@ -1116,6 +1170,8 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 
 /usr/include/c++/15/bits/new_allocator.h:
 
+/root/llvm-project/mlir/include/mlir/Interfaces/LoopLikeInterface.h:
+
 /root/llvm-project/mlir/include/mlir/IR/OpDefinition.h:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h:
@@ -1129,6 +1185,8 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 /usr/include/c++/15/bits/functional_hash.h:
 
 /usr/include/c++/15/cstddef:
+
+/root/llvm-project/mlir/include/mlir/Interfaces/ViewLikeInterface.h:
 
 /usr/include/errno.h:
 
@@ -1150,8 +1208,6 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 
 /root/llvm-project/build/tools/mlir/include/mlir/IR/QuantStorageTypeInterface.h.inc:
 
-/usr/include/c++/15/bits/stl_iterator_base_funcs.h:
-
 /usr/include/c++/15/bits/cxxabi_forced.h:
 
 /usr/include/c++/15/compare:
@@ -1166,11 +1222,7 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 
 /usr/include/c++/15/bits/char_traits.h:
 
-/root/llvm-project/mlir/include/mlir/Interfaces/DataLayoutInterfaces.h:
-
 /usr/include/c++/15/bits/basic_string.tcc:
-
-/usr/include/c++/15/bits/streambuf.tcc:
 
 /usr/include/c++/15/bits/cpp_type_traits.h:
 
@@ -1203,8 +1255,6 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 /root/llvm-project/llvm/include/llvm/ADT/SmallString.h:
 
 /usr/include/assert.h:
-
-/root/llvm-project/mlir/include/mlir/Interfaces/FunctionInterfaces.h:
 
 /usr/include/asm-generic/int-ll64.h:
 
@@ -1247,8 +1297,6 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 /root/llvm-project/llvm/include/llvm/ADT/Sequence.h:
 
 /root/llvm-project/mlir/include/mlir/IR/StorageUniquerSupport.h:
-
-/usr/include/sched.h:
 
 /usr/include/wctype.h:
 
@@ -1350,6 +1398,8 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
+/root/llvm-project/mlir/include/mlir/Interfaces/DestinationStyleOpInterface.h:
+
 /root/llvm-project/mlir/include/mlir/IR/Block.h:
 
 /root/llvm-project/llvm/include/llvm/ADT/SmallPtrSet.h:
@@ -1417,6 +1467,8 @@ CMakeFiles/TileGPU.dir/lib/TileGPUToGPU.cpp.o: /root/python-mlir-gpu-compiler/li
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
 /root/llvm-project/llvm/include/llvm/Support/TrailingObjects.h:
+
+/root/llvm-project/build/tools/mlir/include/mlir/Interfaces/MemorySlotOpInterfaces.h.inc:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
@@ -1522,8 +1574,6 @@ include/tilegpu/TileGPUOpsDialect.h.inc:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
-/root/llvm-project/mlir/include/mlir/IR/OwningOpRef.h:
-
 /usr/include/c++/15/bits/hash_bytes.h:
 
 /root/llvm-project/llvm/include/llvm/Support/Debug.h:
@@ -1574,6 +1624,8 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /root/llvm-project/mlir/include/mlir/Bytecode/BytecodeOpInterface.h:
 
+/root/llvm-project/build/tools/mlir/include/mlir/Dialect/SCF/IR/SCFOps.h.inc:
+
 /usr/include/c++/15/streambuf:
 
 /root/llvm-project/mlir/include/mlir/IR/AttributeSupport.h:
@@ -1585,6 +1637,12 @@ include/tilegpu/TileGPUOps.h.inc:
 /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/ControlFlowInterfaces.h.inc:
 
 /usr/include/c++/15/concepts:
+
+/root/llvm-project/mlir/include/mlir/Interfaces/InferIntDivisibilityOpInterface.h:
+
+/usr/include/c++/15/ext/alloc_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /root/llvm-project/mlir/include/mlir/IR/Location.h:
 
@@ -1618,6 +1676,10 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /usr/include/c++/15/bits/node_handle.h:
 
+/usr/include/linux/stddef.h:
+
+/root/llvm-project/llvm/include/llvm/Support/CFGDiff.h:
+
 /root/llvm-project/build/tools/mlir/include/mlir/IR/OpAsmTypeInterface.h.inc:
 
 /root/llvm-project/llvm/include/llvm/ADT/SmallVectorExtras.h:
@@ -1650,6 +1712,12 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /root/llvm-project/mlir/include/mlir/IR/OperationSupport.h:
 
+/root/llvm-project/mlir/include/mlir/Interfaces/ControlFlowInterfaces.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
 /root/llvm-project/llvm/include/llvm/Support/Error.h:
 
 /root/llvm-project/mlir/include/mlir/Interfaces/SideEffectInterfaces.h:
@@ -1676,11 +1744,11 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /usr/include/c++/15/iterator:
 
-/root/llvm-project/mlir/include/mlir/IR/Action.h:
-
 /usr/include/c++/15/limits:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/gthr-default.h:
+
+/root/llvm-project/build/tools/mlir/include/mlir/Interfaces/DestinationStyleOpInterface.h.inc:
 
 /usr/include/c++/15/bits/refwrap.h:
 
@@ -1705,8 +1773,6 @@ include/tilegpu/TileGPUOps.h.inc:
 /usr/include/x86_64-linux-gnu/c++/15/bits/c++locale.h:
 
 /usr/include/c++/15/pstl/glue_numeric_defs.h:
-
-/root/llvm-project/mlir/include/mlir/IR/PatternMatch.h:
 
 /usr/include/c++/15/bits/basic_ios.tcc:
 
@@ -1744,6 +1810,8 @@ include/tilegpu/TileGPUOps.cpp.inc:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
+/root/llvm-project/build/tools/mlir/include/mlir/Dialect/SCF/IR/SCFOpsDialect.h.inc:
+
 /usr/include/c++/15/type_traits:
 
 /root/llvm-project/mlir/include/mlir/IR/BuiltinAttributes.h:
@@ -1751,8 +1819,6 @@ include/tilegpu/TileGPUOps.cpp.inc:
 /usr/include/c++/15/utility:
 
 /usr/include/c++/15/vector:
-
-/usr/include/stdint.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
@@ -1900,12 +1966,6 @@ include/tilegpu/TileGPUOps.cpp.inc:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
-/usr/include/c++/15/ext/alloc_traits.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-/root/llvm-project/mlir/include/mlir/Interfaces/InferIntDivisibilityOpInterface.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /root/llvm-project/mlir/include/mlir/Interfaces/InferTypeOpInterface.h:
@@ -1954,6 +2014,8 @@ include/tilegpu/TileGPUOps.cpp.inc:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/c++allocator.h:
 
+/root/llvm-project/mlir/include/mlir/Dialect/SCF/IR/SCF.h:
+
 /usr/include/x86_64-linux-gnu/c++/15/bits/gthr.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
@@ -1974,21 +2036,23 @@ include/tilegpu/TileGPUOps.cpp.inc:
 
 /root/llvm-project/build/include/llvm/IR/Attributes.inc:
 
-/root/llvm-project/mlir/include/mlir/Interfaces/CallInterfaces.h:
-
 /root/llvm-project/build/tools/mlir/include/mlir/Config/mlir-config.h:
 
 /root/llvm-project/build/tools/mlir/include/mlir/Dialect/Arith/IR/ArithOpsAttributes.h.inc:
 
 /root/llvm-project/build/tools/mlir/include/mlir/Dialect/Arith/IR/ArithOpsEnums.h.inc:
 
+/root/llvm-project/mlir/include/mlir/IR/PDLPatternMatch.h.inc:
+
+/root/llvm-project/build/tools/mlir/include/mlir/Dialect/GPU/IR/GPUOpInterfaces.h.inc:
+
 /root/llvm-project/build/tools/mlir/include/mlir/Dialect/GPU/IR/GPUOpsEnums.h.inc:
+
+/root/llvm-project/mlir/include/mlir/IR/Dominance.h:
 
 /root/llvm-project/llvm/include/llvm/ADT/BitVector.h:
 
 /root/llvm-project/build/tools/mlir/include/mlir/IR/BuiltinOps.h.inc:
-
-/root/llvm-project/build/tools/mlir/include/mlir/Interfaces/CallInterfaces.h.inc:
 
 /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/DataLayoutAttrInterface.h.inc:
 
@@ -2006,11 +2070,25 @@ include/tilegpu/TileGPUOps.cpp.inc:
 
 /root/llvm-project/build/tools/mlir/include/mlir/Interfaces/InferTypeOpInterface.h.inc:
 
+/root/llvm-project/build/tools/mlir/include/mlir/IR/BuiltinTypeInterfaces.h.inc:
+
+/root/llvm-project/build/tools/mlir/include/mlir/Interfaces/LoopLikeInterface.h.inc:
+
+/root/llvm-project/build/tools/mlir/include/mlir/Interfaces/ParallelCombiningOpInterface.h.inc:
+
+/usr/include/sched.h:
+
+/root/llvm-project/build/tools/mlir/include/mlir/Interfaces/ViewLikeInterface.h.inc:
+
 /root/llvm-project/llvm/include/llvm/IR/Instruction.def:
 
 /usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
 
 /root/llvm-project/llvm/include/llvm/ADT/Bitfields.h:
+
+/usr/include/c++/15/bits/stl_iterator_base_funcs.h:
+
+/root/llvm-project/llvm/include/llvm/ADT/GraphTraits.h:
 
 /usr/include/c++/15/tr1/poly_hermite.tcc:
 
@@ -2054,6 +2132,10 @@ include/tilegpu/TileGPUOps.cpp.inc:
 
 /root/llvm-project/llvm/include/llvm/IR/GlobalVariable.h:
 
+/usr/include/stdint.h:
+
+/root/llvm-project/mlir/include/mlir/Dialect/Utils/StaticValueUtils.h:
+
 /root/llvm-project/llvm/include/llvm/IR/LLVMContext.h:
 
 /root/llvm-project/mlir/include/mlir/IR/Operation.h:
@@ -2068,8 +2150,6 @@ include/tilegpu/TileGPUOps.cpp.inc:
 
 /root/llvm-project/mlir/include/mlir/Dialect/Arith/IR/Arith.h:
 
-/root/llvm-project/mlir/include/mlir/IR/TypeUtilities.h:
-
 /root/llvm-project/llvm/include/llvm/IR/TrackingMDRef.h:
 
 /root/llvm-project/llvm/include/llvm/IR/Use.h:
@@ -2081,6 +2161,10 @@ include/tilegpu/TileGPUOps.cpp.inc:
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
 /root/llvm-project/llvm/include/llvm/Support/CBindingWrapping.h:
+
+/usr/include/c++/15/bits/streambuf.tcc:
+
+/root/llvm-project/llvm/include/llvm/Support/CFGUpdate.h:
 
 /root/llvm-project/mlir/include/mlir/IR/MLIRContext.h:
 
@@ -2094,20 +2178,8 @@ include/tilegpu/TileGPUOps.cpp.inc:
 
 /root/llvm-project/llvm/include/llvm/Support/VersionTuple.h:
 
+/root/llvm-project/build/tools/mlir/include/mlir/Interfaces/CallInterfaces.h.inc:
+
+/root/llvm-project/mlir/include/mlir/Dialect/Arith/Utils/Utils.h:
+
 /root/llvm-project/mlir/include/mlir/Dialect/DLTI/Traits.h:
-
-/root/llvm-project/mlir/include/mlir/IR/BuiltinOps.h:
-
-/root/llvm-project/build/tools/mlir/include/mlir/Dialect/GPU/IR/GPUOpInterfaces.h.inc:
-
-/root/llvm-project/mlir/include/mlir/IR/PDLPatternMatch.h.inc:
-
-/root/llvm-project/mlir/include/mlir/IR/RegionKindInterface.h:
-
-/root/llvm-project/mlir/include/mlir/IR/Unit.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
-/root/llvm-project/mlir/include/mlir/Interfaces/ControlFlowInterfaces.h:

@@ -21,7 +21,7 @@ add_executable(tilegpu-opt tools/tilegpu-opt.cpp)
 target_link_libraries(tilegpu-opt PRIVATE TileGPU MLIRFuncDialect MLIROptLib)
 
 target_sources(TileGPU PRIVATE lib/TileGPUToGPU.cpp)
-target_link_libraries(TileGPU PUBLIC MLIRArithDialect MLIRGPUDialect MLIRPass)
+target_link_libraries(TileGPU PUBLIC MLIRArithDialect MLIRGPUDialect MLIRPass MLIRSCFDialect)
 
 llvm_update_compile_flags(TileGPU)
 llvm_update_compile_flags(tilegpu-opt)
