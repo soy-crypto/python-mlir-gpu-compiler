@@ -50,7 +50,6 @@ namespace mlir::tilegpu
             Value col      = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
 
             /** k tiles loop */
-
             
             
 
