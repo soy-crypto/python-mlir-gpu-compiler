@@ -33,19 +33,17 @@ namespace mlir::tilegpu
             /** init */
             OpBuilder builder(op.getOperation());
             Location loc = op.getLoc();
-
             auto index = [&](int64_t n) -> Value
             {
                 return builder.create<arith::ConstantIndexOp>(loc, n);
             };
 
+            /* loops head */
             Value gx  = index(gridX);
             Value gy  = index(gridY);
             Value bx  = index(tileCols);
             Value by  = index(tileRows);
             Value one = index(1);
-            
-            /* loops head */
             auto launch = builder.create<gpu::LaunchOp>(loc, gx, gy, one, bx, by, one);
             builder.setInsertionPointToStart(&launch.getBody().front());
             
@@ -60,6 +58,7 @@ namespace mlir::tilegpu
             Value col      = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
 
             /** k tiles loop */
+
             
             
 
