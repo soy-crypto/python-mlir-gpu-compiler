@@ -16,21 +16,18 @@ namespace mlir::tilegpu
     {
         void lowerGemm(GemmOp op)
         {
-            // get atrr anbd tile
+            // get op atrr and tile
             auto cType = llvm::cast<MemRefType>(op.getOutput().getType());
             auto tile  = op.getTileAttr().asArrayRef();
-
             int64_t rows     = cType.getDimSize(0);
             int64_t cols     = cType.getDimSize(1);
             int64_t tileRows = tile[0];
             int64_t tileCols = tile[1];
+            int64_t gridX    = cols / tileCols;
+            int64_t gridY    = rows / tileRows;
 
-            // grid size
-            int64_t gridX = cols / tileCols;
-            int64_t gridY = rows / tileRows;
-
-            //build input parameter for gpu launch
-            /** init */
+            // gpu launch implementation
+            /** launch head */
             OpBuilder builder(op.getOperation());
             Location loc = op.getLoc();
             auto index = [&](int64_t n) -> Value
@@ -38,16 +35,16 @@ namespace mlir::tilegpu
                 return builder.create<arith::ConstantIndexOp>(loc, n);
             };
 
-            /* loops head */
-            Value gx  = index(gridX);
-            Value gy  = index(gridY);
-            Value bx  = index(tileCols);
-            Value by  = index(tileRows);
-            Value one = index(1);
+
+            Value gx    = index(gridX);
+            Value gy    = index(gridY);
+            Value bx    = index(tileCols);
+            Value by    = index(tileRows);
+            Value one   = index(1);
             auto launch = builder.create<gpu::LaunchOp>(loc, gx, gy, one, bx, by, one);
             builder.setInsertionPointToStart(&launch.getBody().front());
             
-            /* gemm body */
+            /* launch body */
             auto block  = launch.getBlockIds();
             auto thread = launch.getThreadIds();
             auto size   = launch.getBlockSize();
