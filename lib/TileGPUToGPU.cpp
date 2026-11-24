@@ -8,6 +8,7 @@
 #include "llvm/Support/Casting.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/GPU/IR/GPUDialect.h"
+#include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/IR/Builders.h"
 
 namespace mlir::tilegpu
@@ -40,18 +41,26 @@ namespace mlir::tilegpu
             builder.setInsertionPointToStart(&launch.getBody().front());
             
             /* launch body */
-            auto block  = launch.getBlockIds();
-            auto thread = launch.getThreadIds();
-            auto size   = launch.getBlockSize();
+            auto block    = launch.getBlockIds();
+            auto thread   = launch.getThreadIds();
+            auto tileSize = launch.getBlockSize();
 
-            Value firstRow = builder.create<arith::MulIOp>(loc, block.y, size.y);
+            Value firstRow = builder.create<arith::MulIOp>(loc, block.y,  tileSize.y);
             Value row      = builder.create<arith::AddIOp>(loc, firstRow, thread.y);
-            Value firstCol = builder.create<arith::MulIOp>(loc, block.x, size.x);
+            Value firstCol = builder.create<arith::MulIOp>(loc, block.x,  tileSize.x);
             Value col      = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
 
             /** k tiles loop */
+            auto aType   = llvm::cast<MemRefType>(op.getLhs().getType());
+            Value start  = index(0);
+            Value end    = index(aType.getDimSize(1));
+            Value cStep  = index(tileCols);
+            Value cZero  = builder.create<arith::ConstantOp>(loc, builder.getF32FloatAttr(0.0));
+            auto kLoop = builder.create<scf::ForOp>(loc, start, end, cStep, ValueRange{cZero});
             
             
+            
+
 
             /** terminator */
             builder.create<gpu::TerminatorOp>(loc);
@@ -81,7 +90,7 @@ namespace mlir::tilegpu
 
             void getDependentDialects(DialectRegistry& registry) const override
             {
-                registry.insert<arith::ArithDialect, gpu::GPUDialect>();
+                registry.insert<arith::ArithDialect, gpu::GPUDialect, scf::SCFDialect>();
             }
 
         };
