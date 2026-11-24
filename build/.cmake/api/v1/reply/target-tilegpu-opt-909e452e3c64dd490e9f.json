@@ -1,0 +1,717 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "tilegpu-opt"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"set_target_properties",
+			"include",
+			"find_package",
+			"target_compile_options",
+			"llvm_update_compile_flags",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"/root/llvm-project/build/lib/cmake/mlir/MLIRTargets.cmake",
+			"/root/llvm-project/build/lib/cmake/mlir/MLIRConfig.cmake",
+			"/root/llvm-project/build/lib/cmake/llvm/LLVMExports.cmake",
+			"/root/llvm-project/build/lib/cmake/llvm/LLVMConfig.cmake",
+			"/root/llvm-project/build/lib/cmake/llvm/AddLLVM.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 4,
+				"parent" : 0
+			},
+			{
+				"file" : 2,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 33,
+				"parent" : 5
+			},
+			{
+				"file" : 1,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1065,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1408,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1555,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1198,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 827,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1996,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 2384,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 2052,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 2321,
+				"parent" : 7
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 2010,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 2017,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1037,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 995,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 78,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 2045,
+				"parent" : 7
+			},
+			{
+				"command" : 4,
+				"file" : 2,
+				"line" : 6,
+				"parent" : 5
+			},
+			{
+				"file" : 4,
+				"parent" : 24
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 377,
+				"parent" : 25
+			},
+			{
+				"file" : 3,
+				"parent" : 26
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 95,
+				"parent" : 27
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 55,
+				"parent" : 27
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 27,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 5,
+				"line" : 78,
+				"parent" : 30
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"compileDependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "TileGPU::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "MLIRFuncDialect::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "MLIROptLib::@6890427a1f51a3e7e1df"
+		}
+	],
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"backtrace" : 31,
+					"fragment" : "-fno-exceptions"
+				},
+				{
+					"backtrace" : 31,
+					"fragment" : "-funwind-tables"
+				},
+				{
+					"backtrace" : 31,
+					"fragment" : "-fno-rtti"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 32,
+					"path" : "/root/llvm-project/llvm/include"
+				},
+				{
+					"backtrace" : 32,
+					"path" : "/root/llvm-project/build/include"
+				},
+				{
+					"backtrace" : 32,
+					"path" : "/root/llvm-project/mlir/include"
+				},
+				{
+					"backtrace" : 32,
+					"path" : "/root/llvm-project/build/tools/mlir/include"
+				},
+				{
+					"backtrace" : 33,
+					"path" : "/root/python-mlir-gpu-compiler/include"
+				},
+				{
+					"backtrace" : 33,
+					"path" : "/root/python-mlir-gpu-compiler/build/include"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "TileGPU::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "tilegpu-opt::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"backtrace" : 2,
+				"fragment" : "libTileGPU.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRFuncDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/root/llvm-project/build/lib/libMLIROptLib.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRGPUDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRDLTIDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRMathDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRSCFDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRControlFlowDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRMemorySlotUtils.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRTensorDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRAffineDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRMemRefDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRArithUtils.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRMemOpInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRMemorySlotInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRComplexDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRArithDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRCastInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRInferIntRangeCommon.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRShapedOpInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRUBDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRParallelCombiningOpInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRRuntimeVerifiableOpInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRTransformUtils.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRSubsetOpInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRValueBoundsOpInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRDestinationStyleOpInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRRewrite.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRRewritePDL.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRPDLToPDLInterp.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRPDLInterpDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRPDLDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 16,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRBytecodeWriter.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRBytecodeOpInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 16,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRDebug.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 16,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRObservers.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 16,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRParser.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRBytecodeReader.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRAsmParser.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 16,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRPluginsLib.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRPass.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 19,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRAnalysis.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRInferIntDivisibilityOpInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRDialectUtils.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRLoopLikeInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRControlFlowInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRFunctionInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRCallInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 21,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRDataLayoutInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRInferStridedMetadataInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRInferIntRangeInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRViewLikeInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 22,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRPresburger.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 16,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRIRDL.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRSideEffectInterfaces.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRInferTypeOpInterface.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRDialect.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 16,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRRemarkStreamer.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRIR.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 16,
+				"fragment" : "/root/llvm-project/build/lib/libMLIRSupport.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 23,
+				"fragment" : "/root/llvm-project/build/lib/libLLVMCore.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 23,
+				"fragment" : "/root/llvm-project/build/lib/libLLVMRemarks.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 28,
+				"fragment" : "/root/llvm-project/build/lib/libLLVMBinaryFormat.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 28,
+				"fragment" : "/root/llvm-project/build/lib/libLLVMTargetParser.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 23,
+				"fragment" : "/root/llvm-project/build/lib/libLLVMBitstreamReader.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "/root/llvm-project/build/lib/libLLVMSupport.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libz.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libzstd.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "/root/llvm-project/build/lib/libLLVMDemangle.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"linkLibraries" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "TileGPU::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "MLIRFuncDialect::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "MLIROptLib::@6890427a1f51a3e7e1df"
+		}
+	],
+	"name" : "tilegpu-opt",
+	"nameOnDisk" : "tilegpu-opt",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "tools/tilegpu-opt.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
