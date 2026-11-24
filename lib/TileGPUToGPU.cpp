@@ -21,18 +21,20 @@ namespace mlir::tilegpu
         void lowerGemm(GemmOp op)
         {
             // get op atrr and tile
-            auto CType = llvm::cast<MemRefType>(op.getOutput().getType());
+            Value A = op.getLhs();
+            Value B = op.getRhs();
+            Value C = op.getOutput();
             auto tile  = op.getTileAttr().asArrayRef();
+            auto AType = llvm::cast<MemRefType>(op.getLhs().getType());
+            auto BType = llvm::cast<MemRefType>(op.getRhs().getType());
+            auto CType = llvm::cast<MemRefType>(op.getOutput().getType());
+
             int64_t rows     = CType.getDimSize(0);
             int64_t cols     = CType.getDimSize(1);
             int64_t tileRows = tile[0];
             int64_t tileCols = tile[1];
             int64_t gridRows = rows / tileRows;
             int64_t gridCols = cols / tileCols;
-
-            Value A = op.getLhs();
-            Value B = op.getRhs();
-            Value C = op.getOutput();
 
             // gpu launch implementation
             /** launch head */
@@ -76,7 +78,12 @@ namespace mlir::tilegpu
             Value j = builder.create<arith::AddIOp>(loc, k, thread.x);
             Value a = builder.create<memref::LoadOp>(loc, A, ValueRange{row, j});
             Value b = builder.create<memref::LoadOp>(loc, B, ValueRange{i, col});
+            builder.create<memref::StoreOp>(loc, a, ATile, ValueRange{thread.y, thread.x});
+            builder.create<memref::StoreOp>(loc, b, BTile, ValueRange{thread.y, thread.x});
+            builder.create<gpu::BarrierOp>();
 
+            /** product sum loop */
+        
            
 
             /** terminator */
