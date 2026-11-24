@@ -21,10 +21,10 @@ namespace mlir::tilegpu
         void lowerGemm(GemmOp op)
         {
             // get op atrr and tile
-            auto cType = llvm::cast<MemRefType>(op.getOutput().getType());
+            auto CType = llvm::cast<MemRefType>(op.getOutput().getType());
             auto tile  = op.getTileAttr().asArrayRef();
-            int64_t rows     = cType.getDimSize(0);
-            int64_t cols     = cType.getDimSize(1);
+            int64_t rows     = CType.getDimSize(0);
+            int64_t cols     = CType.getDimSize(1);
             int64_t tileRows = tile[0];
             int64_t tileCols = tile[1];
             int64_t gridRows = rows / tileRows;
@@ -32,6 +32,7 @@ namespace mlir::tilegpu
 
             Value A = op.getLhs();
             Value B = op.getRhs();
+            Value C = op.getOutput();
 
             // gpu launch implementation
             /** launch head */
@@ -42,8 +43,9 @@ namespace mlir::tilegpu
             Value gCols  = index(gridCols);
             Value bRows  = index(tileRows);
             Value bCols  = index(tileRows);
-            Value one   = index(1);
-            auto launch  = builder.create<gpu::LaunchOp>(loc, gRows, gCols, one, bRows, bCols, one);
+            Value one    = index(1);
+            auto launch  = builder.create<gpu::LaunchOp>(loc, gCols, gRows, one, bCols, bRows, one);
+            
             builder.setInsertionPointToStart(&launch.getBody().front());
             
             /* launch body */
@@ -66,9 +68,13 @@ namespace mlir::tilegpu
             builder.setInsertionPointToStart(kLoopOp.getBody());
             
             Value k = kLoopOp.getNumInductionVars()[0];
-            builder.create<memref::LoadOp>(loc, )
+            Value i = builder.create<arith::AddIOp>(loc, k, thread.y);
+            Value j = builder.create<arith::AddIOp>(loc, k, thread.x);
+            Value a = builder.create<memref::LoadOp>(loc, A, ValueRange{row, j});
+            Value b = builder.create<memref::LoadOp>(loc, B, ValueRange{i, col});
 
- 
+           
+
             /** terminator */
             builder.create<gpu::TerminatorOp>(loc);
 
@@ -98,7 +104,7 @@ namespace mlir::tilegpu
 
             void getDependentDialects(DialectRegistry& registry) const override
             {
-                registry.insert<arith::ArithDialect, gpu::GPUDialect, scf::SCFDialect>(), >;
+                registry.insert<arith::ArithDialect, gpu::GPUDialect, scf::SCFDialect, memref::MemRefDialect>();
             }
 
         };
