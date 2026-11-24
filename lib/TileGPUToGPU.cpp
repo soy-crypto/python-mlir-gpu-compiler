@@ -65,9 +65,8 @@ namespace mlir::tilegpu
             Value col      = builder.create<arith::AddIOp>(loc, firstCol, thread.x);
 
             /** k tiles loop */
-            auto aType  = llvm::cast<MemRefType>(op.getLhs().getType());
             Value start = index(0);
-            Value end   = index(aType.getDimSize(1));
+            Value end   = index(AType.getDimSize(1));
             Value step  = index(tileCols);
             Value zero  = builder.create<arith::ConstantOp>(loc, builder.getF32FloatAttr(0.0));
             auto kLoopOp  = builder.create<scf::ForOp>(loc, start, end, step, ValueRange{zero});
@@ -76,15 +75,17 @@ namespace mlir::tilegpu
             Value k = kLoopOp.getInductionVar();
             Value i = builder.create<arith::AddIOp>(loc, k, thread.y);
             Value j = builder.create<arith::AddIOp>(loc, k, thread.x);
-            Value a = builder.create<memref::LoadOp>(loc, A, ValueRange{row, j});
-            Value b = builder.create<memref::LoadOp>(loc, B, ValueRange{i, col});
-            builder.create<memref::StoreOp>(loc, a, ATile, ValueRange{thread.y, thread.x});
-            builder.create<memref::StoreOp>(loc, b, BTile, ValueRange{thread.y, thread.x});
-            builder.create<gpu::BarrierOp>();
+            Value aVal = builder.create<memref::LoadOp>(loc, A, ValueRange{row, j});
+            Value bVal = builder.create<memref::LoadOp>(loc, B, ValueRange{i, col});
+            builder.create<memref::StoreOp>(loc, aVal, ATile, ValueRange{thread.y, thread.x});
+            builder.create<memref::StoreOp>(loc, bVal, BTile, ValueRange{thread.y, thread.x});
+            builder.create<gpu::BarrierOp>(loc);
 
             /** product sum loop */
-        
-           
+            auto loopOp = builder.create<scf::ForOp>(loc, start, tileSize.x, one, ValueRange{kLoopOp.getInductionVar()});
+            Value a = builder.create<memref::LoadOp>(loc, ATile, ValueRange{row, loopOp.getInductionVar()});
+            Value b = builder.create<memref::LoadOp>(loc, BTile, ValueRange{loopOp.getInductionVar(), col});
+            
 
             /** terminator */
             builder.create<gpu::TerminatorOp>(loc);
