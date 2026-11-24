@@ -44,10 +44,12 @@ namespace mlir::tilegpu
             Value bRows = index(tileRows);
             Value bCols = index(tileRows);
             Value one   = index(1);
-            auto launch = builder.create<gpu::LaunchOp>(loc, gCols, gRows, one, bCols, bRows, one);
-            auto space = gpu::AddressSpaceAttr::get(builder.getContext(), gpu::AddressSpace::Workgroup);
+            auto space    = gpu::AddressSpaceAttr::get(builder.getContext(), gpu::AddressSpace::Workgroup);
             auto tileType = MemRefType::get({tileRows, tileCols}, builder.getF32Type(), MemRefLayoutAttrInterface{}, space);
 
+            auto launch = builder.create<gpu::LaunchOp>(loc, gCols, gRows, one, bCols, bRows, one);
+            Value ATile = launch.addWorkgroupAttribution(tileType, loc);
+            Value BTile = launch.addWorkgroupAttribution(tileType, loc);
             builder.setInsertionPointToStart(&launch.getBody().front());
             
             /* launch body */
