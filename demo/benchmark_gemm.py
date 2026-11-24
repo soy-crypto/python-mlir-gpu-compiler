@@ -58,7 +58,7 @@ def main():
         B[:] = rng.integers(-3, 4, size=B.shape)
         expected = A @ B
 
-        for tile in (8, 16):
+        for tile in (8, 16, 16, 8):
             lib = ct.CDLL(str(BUILD_DIR / f"libgemm{tile}.so"))
             gemm = lib.gemm
             gemm.argtypes = matrix_argtypes * 3
