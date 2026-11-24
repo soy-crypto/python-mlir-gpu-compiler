@@ -67,7 +67,7 @@ namespace mlir::tilegpu
             auto kLoopOp  = builder.create<scf::ForOp>(loc, start, end, step, ValueRange{zero});
             builder.setInsertionPointToStart(kLoopOp.getBody());
             
-            Value k = kLoopOp.getNumInductionVars()[0];
+            Value k = kLoopOp.getInductionVar();
             Value i = builder.create<arith::AddIOp>(loc, k, thread.y);
             Value j = builder.create<arith::AddIOp>(loc, k, thread.x);
             Value a = builder.create<memref::LoadOp>(loc, A, ValueRange{row, j});
