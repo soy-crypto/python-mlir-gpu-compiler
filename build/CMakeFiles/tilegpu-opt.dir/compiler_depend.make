@@ -495,6 +495,7 @@ tilegpu-opt: /lib64/ld-linux-x86-64.so.2 \
   /root/llvm-project/build/lib/libLLVMRemarks.a \
   /root/llvm-project/build/lib/libLLVMSupport.a \
   /root/llvm-project/build/lib/libLLVMTargetParser.a \
+  /root/llvm-project/build/lib/libMLIRAffineDialect.a \
   /root/llvm-project/build/lib/libMLIRAnalysis.a \
   /root/llvm-project/build/lib/libMLIRArithDialect.a \
   /root/llvm-project/build/lib/libMLIRArithUtils.a \
@@ -505,6 +506,7 @@ tilegpu-opt: /lib64/ld-linux-x86-64.so.2 \
   /root/llvm-project/build/lib/libMLIRCallInterfaces.a \
   /root/llvm-project/build/lib/libMLIRCastInterfaces.a \
   /root/llvm-project/build/lib/libMLIRComplexDialect.a \
+  /root/llvm-project/build/lib/libMLIRControlFlowDialect.a \
   /root/llvm-project/build/lib/libMLIRControlFlowInterfaces.a \
   /root/llvm-project/build/lib/libMLIRDLTIDialect.a \
   /root/llvm-project/build/lib/libMLIRDataLayoutInterfaces.a \
@@ -527,16 +529,28 @@ tilegpu-opt: /lib64/ld-linux-x86-64.so.2 \
   /root/llvm-project/build/lib/libMLIRMemOpInterfaces.a \
   /root/llvm-project/build/lib/libMLIRMemRefDialect.a \
   /root/llvm-project/build/lib/libMLIRMemorySlotInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRMemorySlotUtils.a \
   /root/llvm-project/build/lib/libMLIRObservers.a \
   /root/llvm-project/build/lib/libMLIROptLib.a \
+  /root/llvm-project/build/lib/libMLIRPDLDialect.a \
+  /root/llvm-project/build/lib/libMLIRPDLInterpDialect.a \
+  /root/llvm-project/build/lib/libMLIRPDLToPDLInterp.a \
+  /root/llvm-project/build/lib/libMLIRParallelCombiningOpInterface.a \
   /root/llvm-project/build/lib/libMLIRParser.a \
   /root/llvm-project/build/lib/libMLIRPass.a \
   /root/llvm-project/build/lib/libMLIRPluginsLib.a \
   /root/llvm-project/build/lib/libMLIRPresburger.a \
   /root/llvm-project/build/lib/libMLIRRemarkStreamer.a \
+  /root/llvm-project/build/lib/libMLIRRewrite.a \
+  /root/llvm-project/build/lib/libMLIRRewritePDL.a \
+  /root/llvm-project/build/lib/libMLIRRuntimeVerifiableOpInterface.a \
+  /root/llvm-project/build/lib/libMLIRSCFDialect.a \
   /root/llvm-project/build/lib/libMLIRShapedOpInterfaces.a \
   /root/llvm-project/build/lib/libMLIRSideEffectInterfaces.a \
+  /root/llvm-project/build/lib/libMLIRSubsetOpInterface.a \
   /root/llvm-project/build/lib/libMLIRSupport.a \
+  /root/llvm-project/build/lib/libMLIRTensorDialect.a \
+  /root/llvm-project/build/lib/libMLIRTransformUtils.a \
   /root/llvm-project/build/lib/libMLIRUBDialect.a \
   /root/llvm-project/build/lib/libMLIRValueBoundsOpInterface.a \
   /root/llvm-project/build/lib/libMLIRViewLikeInterface.a \
@@ -577,11 +591,27 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o:
 
-/usr/lib/x86_64-linux-gnu/librt.a:
-
 /usr/lib/x86_64-linux-gnu/libm.so:
 
 /usr/lib/x86_64-linux-gnu/libdl.a:
+
+/usr/lib/x86_64-linux-gnu/crtn.o:
+
+/usr/lib/x86_64-linux-gnu/crti.o:
+
+/root/llvm-project/build/lib/libMLIRViewLikeInterface.a:
+
+/root/llvm-project/build/lib/libMLIRValueBoundsOpInterface.a:
+
+/root/llvm-project/build/lib/libMLIRUBDialect.a:
+
+/root/llvm-project/build/lib/libMLIRTensorDialect.a:
+
+/root/llvm-project/build/lib/libMLIRShapedOpInterfaces.a:
+
+/root/llvm-project/build/lib/libMLIRSCFDialect.a:
+
+/root/llvm-project/build/lib/libMLIRRuntimeVerifiableOpInterface.a:
 
 /usr/include/c++/15/bits/stl_construct.h:
 
@@ -600,8 +630,6 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
 /usr/include/c++/15/bits/stl_uninitialized.h:
 
 /usr/include/c++/15/bits/shared_ptr_atomic.h:
-
-/root/llvm-project/build/lib/libMLIRUBDialect.a:
 
 /usr/include/c++/15/bits/parse_numbers.h:
 
@@ -680,8 +708,6 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
 /root/llvm-project/mlir/include/mlir/Interfaces/FunctionInterfaces.h:
 
 /usr/include/asm-generic/int-ll64.h:
-
-/usr/include/asm-generic/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
@@ -787,6 +813,12 @@ CMakeFiles/tilegpu-opt.dir/tools/tilegpu-opt.cpp.o:
 
 /root/llvm-project/mlir/include/mlir/IR/DialectInterface.h:
 
+/usr/lib/x86_64-linux-gnu/libc.so:
+
+/usr/lib/x86_64-linux-gnu/Scrt1.o:
+
+/root/llvm-project/llvm/include/llvm/ADT/SmallPtrSet.h:
+
 /usr/include/c++/15/typeinfo:
 
 /usr/include/c++/15/ctime:
@@ -867,8 +899,6 @@ include/tilegpu/TileGPUOpsDialect.h.inc:
 
 /root/python-mlir-gpu-compiler/include/tilegpu/TileGPU.h:
 
-/root/llvm-project/build/lib/libMLIRShapedOpInterfaces.a:
-
 /root/llvm-project/llvm/include/llvm-c/DataTypes.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
@@ -888,6 +918,10 @@ include/tilegpu/TileGPUOpsDialect.h.inc:
 /root/llvm-project/llvm/include/llvm/Support/Casting.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/lib/x86_64-linux-gnu/librt.a:
+
+/root/llvm-project/build/lib/libMLIRAffineDialect.a:
 
 /root/llvm-project/build/tools/mlir/include/mlir/IR/BuiltinLocationAttributes.h.inc:
 
@@ -942,6 +976,8 @@ include/tilegpu/TileGPUOpsDialect.h.inc:
 /root/llvm-project/build/lib/libMLIRBytecodeWriter.a:
 
 /usr/include/c++/15/bits/string_view.tcc:
+
+/root/llvm-project/build/lib/libMLIRTransformUtils.a:
 
 /usr/include/c++/15/bits/invoke.h:
 
@@ -1135,10 +1171,6 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /root/llvm-project/llvm/include/llvm-c/ExternC.h:
 
-/usr/include/x86_64-linux-gnu/bits/locale.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
-
 /root/llvm-project/llvm/include/llvm/ADT/FunctionExtras.h:
 
 /root/llvm-project/llvm/include/llvm/ADT/DenseMap.h:
@@ -1189,6 +1221,8 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /usr/include/c++/15/ext/type_traits.h:
 
+/root/llvm-project/build/lib/libMLIRMemorySlotUtils.a:
+
 /root/llvm-project/llvm/include/llvm/Support/float128.h:
 
 /root/llvm-project/build/tools/mlir/include/mlir/IR/OpAsmAttrInterface.h.inc:
@@ -1230,6 +1264,10 @@ include/tilegpu/TileGPUOps.h.inc:
 /root/llvm-project/mlir/include/mlir/IR/Builders.h:
 
 /root/llvm-project/build/lib/libMLIRArithDialect.a:
+
+/root/llvm-project/build/lib/libMLIRSupport.a:
+
+/usr/include/c++/15/bits/atomic_base.h:
 
 /root/llvm-project/llvm/include/llvm/Support/Format.h:
 
@@ -1361,6 +1399,12 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
+/root/llvm-project/build/lib/libMLIRSideEffectInterfaces.a:
+
+/root/llvm-project/build/tools/mlir/include/mlir/Dialect/Func/IR/FuncOps.h.inc:
+
+/usr/include/c++/15/system_error:
+
 /usr/include/c++/15/tr1/bessel_function.tcc:
 
 /usr/include/c++/15/tr1/beta_function.tcc:
@@ -1368,12 +1412,6 @@ include/tilegpu/TileGPUOps.h.inc:
 /root/llvm-project/build/lib/libMLIRBytecodeReader.a:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/lib/x86_64-linux-gnu/libc.so:
-
-/root/llvm-project/llvm/include/llvm/ADT/SmallPtrSet.h:
-
-/usr/lib/x86_64-linux-gnu/Scrt1.o:
 
 /usr/include/c++/15/tr1/modified_bessel_func.tcc:
 
@@ -1416,6 +1454,8 @@ include/tilegpu/TileGPUOps.h.inc:
 /usr/lib/x86_64-linux-gnu/libc.so.6:
 
 /usr/include/linux/types.h:
+
+/root/llvm-project/build/lib/libMLIRSubsetOpInterface.a:
 
 /usr/include/c++/15/bits/allocated_ptr.h:
 
@@ -1464,6 +1504,8 @@ include/tilegpu/TileGPUOps.h.inc:
 /root/llvm-project/build/tools/mlir/include/mlir/Bytecode/BytecodeDialectInterface.h.inc:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/root/llvm-project/build/lib/libMLIRPDLDialect.a:
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
@@ -1535,6 +1577,8 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
+/root/llvm-project/build/lib/libMLIRRewritePDL.a:
+
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
@@ -1564,8 +1608,6 @@ include/tilegpu/TileGPUOps.h.inc:
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/lib/x86_64-linux-gnu/crtn.o:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
@@ -1609,6 +1651,8 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /usr/lib/gcc/x86_64-linux-gnu/15/include/syslimits.h:
 
+/root/llvm-project/build/lib/libMLIRRewrite.a:
+
 /usr/include/c++/15/bits/istream.tcc:
 
 /lib64/ld-linux-x86-64.so.2:
@@ -1622,6 +1666,10 @@ include/tilegpu/TileGPUOps.h.inc:
 /root/llvm-project/mlir/include/mlir/Support/WalkResult.h:
 
 /root/llvm-project/build/lib/libMLIRRemarkStreamer.a:
+
+/usr/include/asm-generic/errno.h:
+
+/root/llvm-project/build/lib/libMLIRControlFlowDialect.a:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
@@ -1653,6 +1701,16 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /root/llvm-project/build/lib/libMLIRObservers.a:
 
+/root/llvm-project/build/lib/libMLIRPDLInterpDialect.a:
+
+/root/llvm-project/build/lib/libMLIRPDLToPDLInterp.a:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/root/llvm-project/build/lib/libMLIRParallelCombiningOpInterface.a:
+
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
 /root/llvm-project/build/lib/libMLIRPass.a:
@@ -1661,22 +1719,6 @@ include/tilegpu/TileGPUOps.h.inc:
 
 /root/llvm-project/build/lib/libMLIRPluginsLib.a:
 
-/usr/include/c++/15/bits/atomic_base.h:
-
-/root/llvm-project/build/lib/libMLIRSupport.a:
-
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
 /root/llvm-project/build/lib/libMLIRPresburger.a:
-
-/root/llvm-project/build/tools/mlir/include/mlir/Dialect/Func/IR/FuncOps.h.inc:
-
-/usr/include/c++/15/system_error:
-
-/root/llvm-project/build/lib/libMLIRSideEffectInterfaces.a:
-
-/root/llvm-project/build/lib/libMLIRValueBoundsOpInterface.a:
-
-/root/llvm-project/build/lib/libMLIRViewLikeInterface.a:
-
-/usr/lib/x86_64-linux-gnu/crti.o:
