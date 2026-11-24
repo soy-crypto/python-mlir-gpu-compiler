@@ -23,25 +23,20 @@ namespace mlir::tilegpu
             int64_t cols     = cType.getDimSize(1);
             int64_t tileRows = tile[0];
             int64_t tileCols = tile[1];
-            int64_t gridX    = cols / tileCols;
-            int64_t gridY    = rows / tileRows;
+            int64_t gridRows = rows / tileRows;
+            int64_t gridCols = cols / tileCols;
 
             // gpu launch implementation
             /** launch head */
             OpBuilder builder(op.getOperation());
             Location loc = op.getLoc();
-            auto index = [&](int64_t n) -> Value
-            {
-                return builder.create<arith::ConstantIndexOp>(loc, n);
-            };
-
-
-            Value gx    = index(gridX);
-            Value gy    = index(gridY);
-            Value bx    = index(tileCols);
-            Value by    = index(tileRows);
-            Value one   = index(1);
-            auto launch = builder.create<gpu::LaunchOp>(loc, gx, gy, one, bx, by, one);
+            auto index = [&](int64_t n) -> Value { return builder.create<arith::ConstantIndexOp>(loc, n); };
+            Value gRows  = index(gridRows);
+            Value gCols  = index(gridCols);
+            Value bRows  = index(tileRows);
+            Value bCols  = index(tileRows);
+            Value step   = index(1);
+            auto launch  = builder.create<gpu::LaunchOp>(loc, gRows, gCols, step, bRows, bCols);
             builder.setInsertionPointToStart(&launch.getBody().front());
             
             /* launch body */
