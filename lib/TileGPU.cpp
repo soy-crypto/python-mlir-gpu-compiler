@@ -66,9 +66,16 @@ namespace mlir::tilegpu
         }
 
         // epilogue checking
-        if (getEpilogue() != "none")
+        if (epilogue == "none")
         {
-            return emitOpError("currently supports only epilogue = \"none\"");
+            if(bias)
+            {
+                return emitOpError("plain GEMM expects only A, B, and C");
+            }
+        }
+        else
+        {
+            
         }
 
         // return
