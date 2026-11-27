@@ -272,6 +272,24 @@ namespace detail {
 
 GemmOpGenericAdaptorBase::GemmOpGenericAdaptorBase(GemmOp op) : odsAttrs(op->getRawDictionaryAttrs()), odsOpName(op->getName()), properties(op.getProperties()), odsRegions(op->getRegions()) {}
 
+std::pair<unsigned, unsigned> GemmOpGenericAdaptorBase::getODSOperandIndexAndLength(unsigned index, unsigned odsOperandsSize) {
+  bool isVariadic[] = {false, false, true, false};
+  int prevVariadicCount = 0;
+  for (unsigned i = 0; i < index; ++i)
+    if (isVariadic[i]) ++prevVariadicCount;
+
+  // Calculate how many dynamic values a static variadic operand corresponds to.
+  // This assumes all static variadic operands have the same dynamic value count.
+  int variadicSize = (odsOperandsSize - 3) / 1;
+  // `index` passed in as the parameter is the static index which counts each
+  // operand (variadic or not) as size 1. So here for each previous static variadic
+  // operand, we need to offset by (variadicSize - 1) to get where the dynamic
+  // value pack for this static operand starts.
+  int start = index + (variadicSize - 1) * prevVariadicCount;
+  int size = isVariadic[index] ? variadicSize : 1;
+  return {start, size};
+}
+
 ::llvm::ArrayRef<int64_t> GemmOpGenericAdaptorBase::getTile() {
   auto attr = getTileAttr();
   return attr;
@@ -298,6 +316,30 @@ GemmOpAdaptor::GemmOpAdaptor(GemmOp op) : GemmOpGenericAdaptor(op->getOperands()
   if (tblgen_epilogue && !((::llvm::isa<::mlir::StringAttr>(tblgen_epilogue))))
     return emitError(loc, "'tilegpu.gemm' op attribute 'epilogue' failed to satisfy constraint: string attribute");
   return ::mlir::success();
+}
+
+std::pair<unsigned, unsigned> GemmOp::getODSOperandIndexAndLength(unsigned index) {
+  bool isVariadic[] = {false, false, true, false};
+  int prevVariadicCount = 0;
+  for (unsigned i = 0; i < index; ++i)
+    if (isVariadic[i]) ++prevVariadicCount;
+
+  // Calculate how many dynamic values a static variadic operand corresponds to.
+  // This assumes all static variadic operands have the same dynamic value count.
+  int variadicSize = (getOperation()->getNumOperands() - 3) / 1;
+  // `index` passed in as the parameter is the static index which counts each
+  // operand (variadic or not) as size 1. So here for each previous static variadic
+  // operand, we need to offset by (variadicSize - 1) to get where the dynamic
+  // value pack for this static operand starts.
+  int start = index + (variadicSize - 1) * prevVariadicCount;
+  int size = isVariadic[index] ? variadicSize : 1;
+  return {start, size};
+}
+
+::mlir::MutableOperandRange GemmOp::getBiasMutable() {
+  auto range = getODSOperandIndexAndLength(2);
+  auto mutableRange = ::mlir::MutableOperandRange(getOperation(), range.first, range.second);
+  return mutableRange;
 }
 
 ::llvm::LogicalResult GemmOp::setPropertiesFromAttr(Properties &prop, ::mlir::Attribute attr, ::llvm::function_ref<::mlir::InFlightDiagnostic()> emitError) {
@@ -455,29 +497,33 @@ void GemmOp::setEpilogue(::llvm::StringRef attrValue) {
   getProperties().epilogue = ::mlir::Builder((*this)->getContext()).getStringAttr(attrValue);
 }
 
-void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
+void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
   odsState.addOperands(lhs);
   odsState.addOperands(rhs);
+  if (bias)
+    odsState.addOperands(bias);
   odsState.addOperands(output);
   odsState.getOrAddProperties<Properties>().tile = tile;
   odsState.getOrAddProperties<Properties>().epilogue = epilogue;
 }
 
-GemmOp GemmOp::create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
+GemmOp GemmOp::create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
   ::mlir::OperationState __state__(location, getOperationName());
-  build(builder, __state__, std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
+  build(builder, __state__, std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(bias)>(bias), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
   auto __res__ = builder.create(__state__);
   assert((::llvm::isa<GemmOp>(__res__)) && "builder didn't return the right type");
   return ::llvm::cast<GemmOp>(__res__);
 }
 
-GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
-  return create(builder, builder.getLoc(), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
+GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
+  return create(builder, builder.getLoc(), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(bias)>(bias), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
 }
 
-void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
+void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
   odsState.addOperands(lhs);
   odsState.addOperands(rhs);
+  if (bias)
+    odsState.addOperands(bias);
   odsState.addOperands(output);
   odsState.getOrAddProperties<Properties>().tile = tile;
   odsState.getOrAddProperties<Properties>().epilogue = epilogue;
@@ -485,41 +531,45 @@ void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsSta
   odsState.addTypes(resultTypes);
 }
 
-GemmOp GemmOp::create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
+GemmOp GemmOp::create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
   ::mlir::OperationState __state__(location, getOperationName());
-  build(builder, __state__, std::forward<decltype(resultTypes)>(resultTypes), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
+  build(builder, __state__, std::forward<decltype(resultTypes)>(resultTypes), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(bias)>(bias), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
   auto __res__ = builder.create(__state__);
   assert((::llvm::isa<GemmOp>(__res__)) && "builder didn't return the right type");
   return ::llvm::cast<GemmOp>(__res__);
 }
 
-GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
-  return create(builder, builder.getLoc(), std::forward<decltype(resultTypes)>(resultTypes), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
+GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue) {
+  return create(builder, builder.getLoc(), std::forward<decltype(resultTypes)>(resultTypes), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(bias)>(bias), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
 }
 
-void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
+void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
   odsState.addOperands(lhs);
   odsState.addOperands(rhs);
+  if (bias)
+    odsState.addOperands(bias);
   odsState.addOperands(output);
   odsState.getOrAddProperties<Properties>().tile = odsBuilder.getDenseI64ArrayAttr(tile);
   odsState.getOrAddProperties<Properties>().epilogue = odsBuilder.getStringAttr(epilogue);
 }
 
-GemmOp GemmOp::create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
+GemmOp GemmOp::create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
   ::mlir::OperationState __state__(location, getOperationName());
-  build(builder, __state__, std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
+  build(builder, __state__, std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(bias)>(bias), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
   auto __res__ = builder.create(__state__);
   assert((::llvm::isa<GemmOp>(__res__)) && "builder didn't return the right type");
   return ::llvm::cast<GemmOp>(__res__);
 }
 
-GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
-  return create(builder, builder.getLoc(), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
+GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
+  return create(builder, builder.getLoc(), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(bias)>(bias), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
 }
 
-void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
+void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
   odsState.addOperands(lhs);
   odsState.addOperands(rhs);
+  if (bias)
+    odsState.addOperands(bias);
   odsState.addOperands(output);
   odsState.getOrAddProperties<Properties>().tile = odsBuilder.getDenseI64ArrayAttr(tile);
   odsState.getOrAddProperties<Properties>().epilogue = odsBuilder.getStringAttr(epilogue);
@@ -527,20 +577,20 @@ void GemmOp::build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsSta
   odsState.addTypes(resultTypes);
 }
 
-GemmOp GemmOp::create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
+GemmOp GemmOp::create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
   ::mlir::OperationState __state__(location, getOperationName());
-  build(builder, __state__, std::forward<decltype(resultTypes)>(resultTypes), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
+  build(builder, __state__, std::forward<decltype(resultTypes)>(resultTypes), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(bias)>(bias), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
   auto __res__ = builder.create(__state__);
   assert((::llvm::isa<GemmOp>(__res__)) && "builder didn't return the right type");
   return ::llvm::cast<GemmOp>(__res__);
 }
 
-GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
-  return create(builder, builder.getLoc(), std::forward<decltype(resultTypes)>(resultTypes), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
+GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue) {
+  return create(builder, builder.getLoc(), std::forward<decltype(resultTypes)>(resultTypes), std::forward<decltype(lhs)>(lhs), std::forward<decltype(rhs)>(rhs), std::forward<decltype(bias)>(bias), std::forward<decltype(output)>(output), std::forward<decltype(tile)>(tile), std::forward<decltype(epilogue)>(epilogue));
 }
 
 void GemmOp::build(::mlir::OpBuilder &, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::ValueRange operands, ::llvm::ArrayRef<::mlir::NamedAttribute> attributes) {
-  assert(operands.size() == 3u && "mismatched number of parameters");
+  assert(operands.size() >= 3u && "mismatched number of parameters");
   odsState.addOperands(operands);
   odsState.addAttributes(attributes);
   assert(resultTypes.size() == 0u && "mismatched number of return types");
@@ -570,7 +620,7 @@ GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange r
 }
 
 void GemmOp::build(::mlir::OpBuilder &, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::ValueRange operands, const Properties &properties, ::llvm::ArrayRef<::mlir::NamedAttribute> discardableAttributes) {
-  assert(operands.size() == 3u && "mismatched number of parameters");
+  assert(operands.size() >= 3u && "mismatched number of parameters");
   odsState.addOperands(operands);
   odsState.useProperties(const_cast<Properties&>(properties));
   odsState.addAttributes(discardableAttributes);
@@ -617,7 +667,18 @@ GemmOp GemmOp::create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange r
     }
     auto valueGroup2 = getODSOperands(2);
 
+    if (valueGroup2.size() > 1) {
+      return emitOpError("operand group starting at #") << index
+          << " requires 0 or 1 element, but found " << valueGroup2.size();
+    }
+
     for (auto v : valueGroup2) {
+      if (::mlir::failed(__mlir_ods_local_type_constraint_TileGPUOps2(*this, v.getType(), "operand", index++)))
+        return ::mlir::failure();
+    }
+    auto valueGroup3 = getODSOperands(3);
+
+    for (auto v : valueGroup3) {
       if (::mlir::failed(__mlir_ods_local_type_constraint_TileGPUOps2(*this, v.getType(), "operand", index++)))
         return ::mlir::failure();
     }
@@ -708,6 +769,12 @@ void GemmOp::getEffects(::llvm::SmallVectorImpl<::mlir::SideEffects::EffectInsta
   }
   {
     auto valueRange = getODSOperandIndexAndLength(2);
+    for (unsigned idx = valueRange.first; idx < valueRange.first + valueRange.second; idx++) {
+      effects.emplace_back(::mlir::MemoryEffects::Read::get(), &getOperation()->getOpOperand(idx), 0, false, ::mlir::SideEffects::DefaultResource::get());
+    }
+  }
+  {
+    auto valueRange = getODSOperandIndexAndLength(3);
     for (unsigned idx = valueRange.first; idx < valueRange.first + valueRange.second; idx++) {
       effects.emplace_back(::mlir::MemoryEffects::Write::get(), &getOperation()->getOpOperand(idx), 0, false, ::mlir::SideEffects::DefaultResource::get());
     }

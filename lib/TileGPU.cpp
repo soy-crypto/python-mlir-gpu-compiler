@@ -20,6 +20,8 @@ namespace mlir::tilegpu
         auto a = llvm::cast<MemRefType>(getLhs().getType());
         auto b = llvm::cast<MemRefType>(getRhs().getType());
         auto c = llvm::cast<MemRefType>(getOutput().getType());
+        auto epilogue = getEpilogue();
+        auto bias = getBias();
 
         // parameters checking
         /** dimentions checking */

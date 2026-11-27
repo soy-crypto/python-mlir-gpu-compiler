@@ -261,10 +261,7 @@ public:
 
   GemmOpGenericAdaptorBase(GemmOp op);
 
-  std::pair<unsigned, unsigned> getODSOperandIndexAndLength(unsigned index, unsigned odsOperandsSize) {
-    return {index, 1};
-  }
-
+  std::pair<unsigned, unsigned> getODSOperandIndexAndLength(unsigned index, unsigned odsOperandsSize);
   const Properties &getProperties() {
     return properties;
   }
@@ -294,7 +291,8 @@ class GemmOpGenericAdaptor : public detail::GemmOpGenericAdaptorBase {
   using Base = detail::GemmOpGenericAdaptorBase;
   static constexpr int odsIndex_lhs = 0;
   static constexpr int odsIndex_rhs = 1;
-  static constexpr int odsIndex_output = 2;
+  static constexpr int odsIndex_bias = 2;
+  static constexpr int odsIndex_output = 3;
 public:
   GemmOpGenericAdaptor(RangeT values, ::mlir::DictionaryAttr attrs, const Properties &properties, ::mlir::RegionRange regions = {}) : Base(attrs, properties, regions), odsOperands(values) {}
 
@@ -325,8 +323,13 @@ public:
     return (*getODSOperands(1).begin());
   }
 
+  ValueT getBias() {
+    auto operands = getODSOperands(2);
+    return operands.empty() ? ValueT{} : (*operands.begin());
+  }
+
   ValueT getOutput() {
-    return (*getODSOperands(2).begin());
+    return (*getODSOperands(3).begin());
   }
 
   RangeT getOperands() {
@@ -343,7 +346,7 @@ public:
 
   ::llvm::LogicalResult verify(::mlir::Location loc);
 };
-class GemmOp : public ::mlir::Op<GemmOp, ::mlir::OpTrait::ZeroRegions, ::mlir::OpTrait::ZeroResults, ::mlir::OpTrait::ZeroSuccessors, ::mlir::OpTrait::NOperands<3>::Impl, ::mlir::OpTrait::OpInvariants, ::mlir::BytecodeOpInterface::Trait, ::mlir::MemoryEffectOpInterface::Trait> {
+class GemmOp : public ::mlir::Op<GemmOp, ::mlir::OpTrait::ZeroRegions, ::mlir::OpTrait::ZeroResults, ::mlir::OpTrait::ZeroSuccessors, ::mlir::OpTrait::AtLeastNOperands<3>::Impl, ::mlir::OpTrait::OpInvariants, ::mlir::BytecodeOpInterface::Trait, ::mlir::MemoryEffectOpInterface::Trait> {
 public:
   using Op::Op;
   using Op::print;
@@ -353,7 +356,8 @@ public:
   using FoldAdaptor = GenericAdaptor<::llvm::ArrayRef<::mlir::Attribute>>;
   static constexpr int odsIndex_lhs = 0;
   static constexpr int odsIndex_rhs = 1;
-  static constexpr int odsIndex_output = 2;
+  static constexpr int odsIndex_bias = 2;
+  static constexpr int odsIndex_output = 3;
   using Properties = FoldAdaptor::Properties;
   static ::llvm::ArrayRef<::llvm::StringRef> getAttributeNames() {
     static ::llvm::StringRef attrNames[] = {::llvm::StringRef("epilogue"), ::llvm::StringRef("tile")};
@@ -380,10 +384,7 @@ public:
     return ::llvm::StringLiteral("tilegpu.gemm");
   }
 
-  std::pair<unsigned, unsigned> getODSOperandIndexAndLength(unsigned index) {
-    return {index, 1};
-  }
-
+  std::pair<unsigned, unsigned> getODSOperandIndexAndLength(unsigned index);
   ::mlir::Operation::operand_range getODSOperands(unsigned index) {
     auto valueRange = getODSOperandIndexAndLength(index);
     return {std::next(getOperation()->operand_begin(), valueRange.first),
@@ -398,8 +399,13 @@ public:
     return ::llvm::cast<::mlir::TypedValue<::mlir::MemRefType>>(*getODSOperands(1).begin());
   }
 
+  ::mlir::TypedValue<::mlir::MemRefType> getBias() {
+    auto operands = getODSOperands(2);
+    return operands.empty() ? ::mlir::TypedValue<::mlir::MemRefType>{} : ::llvm::cast<::mlir::TypedValue<::mlir::MemRefType>>(*operands.begin());
+  }
+
   ::mlir::TypedValue<::mlir::MemRefType> getOutput() {
-    return ::llvm::cast<::mlir::TypedValue<::mlir::MemRefType>>(*getODSOperands(2).begin());
+    return ::llvm::cast<::mlir::TypedValue<::mlir::MemRefType>>(*getODSOperands(3).begin());
   }
 
   ::mlir::OpOperand &getLhsMutable() {
@@ -412,8 +418,9 @@ public:
     return getOperation()->getOpOperand(range.first);
   }
 
+  ::mlir::MutableOperandRange getBiasMutable();
   ::mlir::OpOperand &getOutputMutable() {
-    auto range = getODSOperandIndexAndLength(2);
+    auto range = getODSOperandIndexAndLength(3);
     return getOperation()->getOpOperand(range.first);
   }
 
@@ -456,18 +463,18 @@ public:
   }
 
   void setEpilogue(::llvm::StringRef attrValue);
-  static void build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
-  static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
-  static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
-  static void build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
-  static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
-  static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
-  static void build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
-  static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
-  static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
-  static void build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
-  static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
-  static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
+  static void build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
+  static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
+  static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
+  static void build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
+  static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
+  static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::mlir::DenseI64ArrayAttr tile, ::mlir::StringAttr epilogue);
+  static void build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
+  static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
+  static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
+  static void build(::mlir::OpBuilder &odsBuilder, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
+  static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
+  static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::Value lhs, ::mlir::Value rhs, /*optional*/::mlir::Value bias, ::mlir::Value output, ::llvm::ArrayRef<int64_t> tile, ::llvm::StringRef epilogue);
   static void build(::mlir::OpBuilder &, ::mlir::OperationState &odsState, ::mlir::TypeRange resultTypes, ::mlir::ValueRange operands, ::llvm::ArrayRef<::mlir::NamedAttribute> attributes = {});
   static GemmOp create(::mlir::OpBuilder &builder, ::mlir::Location location, ::mlir::TypeRange resultTypes, ::mlir::ValueRange operands, ::llvm::ArrayRef<::mlir::NamedAttribute> attributes = {});
   static GemmOp create(::mlir::ImplicitLocOpBuilder &builder, ::mlir::TypeRange resultTypes, ::mlir::ValueRange operands, ::llvm::ArrayRef<::mlir::NamedAttribute> attributes = {});
