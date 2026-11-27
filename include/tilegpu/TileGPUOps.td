@@ -17,7 +17,7 @@ def TileGPU_GemmOp : Op<TileGPU_Dialect, "gemm">
                         Arg<F32MemRef, "left matrix",   [MemRead]> : $lhs, 
                         Arg<F32MemRef, "right matrix",  [MemRead]> : $rhs,
                         Arg<Optional<F32MemRef>, "column bias",  [MemRead]> : $bias,
-                        Arg<F32MemRef, "output matrix", [MemWrite]> : $output,
+                        Arg<F32MemRef, "output matrix", [MemWrite]>: $output,
                         DenseI64ArrayAttr : $tile,
                         StrAttr : $epilogue
                     );
